@@ -4,6 +4,8 @@ module.exports = withModuleFederationPlugin({
 
   name: 'mfe-publisher',
 
+  filename: 'remoteEntry.js',
+
   exposes: {
     './Component': './projects/mfe-publisher/src/app/app.component.ts',
   },
