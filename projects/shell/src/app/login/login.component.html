@@ -1,10 +1,26 @@
-<section>
-    <div>
-        
-    </div>
-</section>
+<section class="container_login"id="login">
 
-<app-books-catalog></app-books-catalog>
-<button routerLink="/booksCatalog">Ver Livros</button>
-<button routerLink="/publisher">Ver Editoras</button>
-<button routerLink="/">Voltar</button>
+
+
+        <form class="box_login" (ngSubmit)="checkUser()">
+            <div class="icon_title">
+                <img src="assets/images/image-book/books_library_1768.png" alt="">
+            </div>
+        
+            <div class="box_inputs">
+                <div class="box_icon_login"><img src="assets/images/icons/user_login.png" alt="icon user"></div>
+                <input required id="username" ngModel  name="username" type="text" placeholder="Enter your user" [ngClass]="{'error':loginFailed,'success': !loginFailed}">
+            </div>
+            <div class="box_inputs ">
+                 <div class="box_icon_login"><img src="assets/images/icons/pass_login.svg" alt="icon password"></div>
+                <input required id="password" ngModel name="password" type="text" placeholder="Enter your password" [ngClass]="{'error':loginFailed,'success': !loginFailed}">
+            </div>
+    
+            <div class="box_btn_login">
+                <button class="butt" (click)="registration()">Cadastre-se</button> 
+                <button class="butt" type="submit">Next</button>
+            </div>
+            
+        </form>
+
+</section>

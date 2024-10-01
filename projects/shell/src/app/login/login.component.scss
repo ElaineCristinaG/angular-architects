@@ -56,7 +56,12 @@
             border-radius: 5px;
             height: 36px ;
             width: 100%;
-            
+            &.error{
+                border-color: var(--color-error);
+            };
+            &.success{
+              border-color: var(--color-success);
+            }           
            }
         }
         .box_btn_login{
@@ -90,9 +95,4 @@
 
     }
 }
-.error{
-    border-color: var(--color-error);
-};
-.success{
-    border-color: var(--color-success);
-}
+

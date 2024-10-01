@@ -1,12 +1,17 @@
 :root{
-    --color-black:   #2d2d29;
-    --color-gree-3:  #215a6d;
-    --color-green-2: #3ca2a2;
-    --color-green-1: #92c7a3;
-    --color-green-0: #dfece6;
+    /**colors base*/
+    --color-black:    #2d2d29;
+    --color-gree-3:   #215a6d;
+    --color-green-2:  #3ca2a2;
+    --color-green-1:  #92c7a3;
+    --color-green-0:  #dfece6;
     --color-grape-2:  #3e1c33;
     --color-grape-1:  #602749;
     --color-orange-2: #b14623;
     --color-yeloow-2: #f6921d;
+    /**colors feedback*/
+    --color-error:   #eb0e0e;
+    --color-warning: #ff6600;
+    --color-success: #388f38;
 }
 
