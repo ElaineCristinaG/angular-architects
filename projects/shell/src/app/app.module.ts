@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { BooksCatalogComponent } from '../../../mfe-books/src/app/books-catalog/books-catalog.component';
 import { RouterModule } from '@angular/router';
+import { InitComponent } from './init/init.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    InitComponent,
     BooksCatalogComponent
   ],
   imports: [
