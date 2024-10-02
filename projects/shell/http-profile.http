@@ -1,0 +1,25 @@
+###
+GET http://localhost:3000/profile
+
+###
+POST http://localhost:3000/profile HTTP/1.1
+content-type: application/json
+
+{ 
+    "email": "teste@teste.com",
+    "password": "123456",
+    "roles": "user"
+}
+
+###
+PUT http://localhost:3000/profile/5 HTTP/1.1
+content-type: application/json
+{
+   
+    "email": "teste@teste.com",
+    "password": "123456",
+    "roles": "user"
+  }
+
+###
+DELETE http://localhost:3000/profile/e79f

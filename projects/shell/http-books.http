@@ -1,0 +1,36 @@
+GET http://localhost:3000/books/
+
+### 
+POST http://localhost:3000/books HTTP/1.1
+content-type: application/json
+
+{
+    "author": "Chinua Achebe",
+    "country": "Nigeria",
+    "imageLink": "images/things-fall-apart.jpg",
+    "language": "English",
+    "link": "https://en.wikipedia.org/wiki/Things_Fall_Apart",
+    "pages": 209,
+    "title": "Things Fall Apart",
+    "year": 1958,
+    "id": "06789788"
+}
+
+###
+PUT http://localhost:3000/books HTTP/1.1
+content-type: application/json
+{
+      "author": "Chinua Achebe Modified",
+      "country": "Nigeria",
+      "imageLink": "images/things-fall-apart.jpg",
+      "language": "English",
+      "link": "https://en.wikipedia.org/wiki/Things_Fall_Apart\n",
+      "pages": 1000,
+      "title": "Things Fall Apart",
+      "year": 1958,
+   
+}
+
+
+###
+DELETE http://localhost:3000/books/

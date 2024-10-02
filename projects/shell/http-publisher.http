@@ -1,0 +1,35 @@
+
+
+###
+GET http://localhost:3000/publishers/
+###
+
+DELETE  http://localhost:3000/publishers/6d4c 
+
+###  //CRIA NOVO
+POST http://localhost:3000/publishers HTTP/1.1
+content-type: application/json
+
+{
+    
+ "name": "Exemple2 Publishing Teste2",
+ "country": "United States",
+ "founded": 1895,
+ "website": "https://teste2.teste.com"
+    
+}
+### //UPDATE
+
+PUT  http://localhost:3000/publishers/158e HTTP/1.1
+content-type: application/json
+
+{
+     
+ "name": "Exemple2 Publishing Change",
+ "country": "United States",
+ "founded": 3000,
+ "website": "https://teste2.change.com"
+}
+
+
+
