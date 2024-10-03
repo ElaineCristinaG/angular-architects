@@ -2,11 +2,19 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { loadRemoteModule } from '@angular-architects/module-federation';
+import { InitComponent } from './init/init.component';
+import { AuthGuardService } from './services/authGuard/auth-guard.service';
 
 const routes: Routes = [
   {
     path:'',
     component: LoginComponent,
+    pathMatch:'full'
+  },
+  {
+    path:'home',
+    component: InitComponent,
+    canActivate:[AuthGuardService]
   },
   {
     path:'booksCatalog',
