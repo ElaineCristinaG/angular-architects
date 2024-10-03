@@ -81,8 +81,8 @@
 					},
 					"defaultConfiguration": "development",
 					"options": {
-						"port": 3000,
-						"publicHost": "http://localhost:3000",
+						"port": 4000,
+						"publicHost": "http://localhost:4000",
 						"extraWebpackConfig": "projects/shell/webpack.config.js"
 					}
 				},
