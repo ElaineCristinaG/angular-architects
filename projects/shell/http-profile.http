@@ -6,20 +6,21 @@ POST http://localhost:3000/profile HTTP/1.1
 content-type: application/json
 
 { 
-    "email": "teste@teste.com",
-    "password": "123456",
-    "roles": "user"
+    "email": "testet@testet.com",
+    "password": "6574859",
+    "name": "nome de teste"
 }
 
 ###
-PUT http://localhost:3000/profile/5 HTTP/1.1
+PUT http://localhost:3000/profile/ HTTP/1.1
 content-type: application/json
+
 {
-   
-    "email": "teste@teste.com",
-    "password": "123456",
-    "roles": "user"
-  }
+  "email": "teste@teste.com",
+  "password": "010101",
+  "name": "Alfredo",
+  "id": "7d35"
+}
 
 ###
-DELETE http://localhost:3000/profile/e79f
+DELETE http://localhost:3000/profile/7d9d

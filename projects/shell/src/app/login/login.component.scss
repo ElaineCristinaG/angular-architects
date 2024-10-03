@@ -1,4 +1,5 @@
 @import '../../assets/global-styles/position.scss';
+
 .container_login{
     display: flex;
     flex-direction: column;
@@ -14,8 +15,10 @@
         flex-direction: column;
         gap: 20px;
         align-items: center;
-        .icon_title{
-           width: 250px;
+        .box_title{
+            width: 250px;
+            align-items: center;
+            justify-content: center;
            img{
             max-width: 100%;
             height: auto;
@@ -28,7 +31,6 @@
                 }
            }
         }
-
         .box_inputs{
             display: flex;
             flex-direction: row;
@@ -36,6 +38,12 @@
             border: none;
             align-items: center;
             width: 100%;
+            .labelForm{
+                width: 100px;
+                 @media (max-width: 1024px) {
+                    width: 70px;
+                 }
+            }
             .box_icon_login{
                 width: 32px;
                 height: auto;
@@ -56,6 +64,15 @@
             border-radius: 5px;
             height: 36px ;
             width: 100%;
+            background-color: transparent;
+            
+            .inputRegister{
+                width: 200px
+            }
+
+            .inputRegisterPass{
+                width: 100px;
+            }
             &.error{
                 border-color: var(--color-error);
             };
