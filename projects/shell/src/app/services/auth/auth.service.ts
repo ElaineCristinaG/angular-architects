@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from '../../models/login';
+import { Profile, User } from '../../models/login';
 import { Observable } from 'rxjs/internal/Observable';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
@@ -9,37 +9,29 @@ import { map } from 'rxjs';
 })
 export class AuthService {
 
-  // private validateUser = 'user@user';
-  // private validatePass = '123456';
-
-  private apiUrl = 'http://localhost:4000/users';
+  private apiUrl = 'http://localhost:3000/profile';
 
   constructor(
     private http: HttpClient,
   ) { }
 
 
-   public login(user: User): Observable<{ success: boolean; token?: string; user?: any }> {
-    return this.http.post<any>(this.apiUrl, user) 
+   public login(user: User): Observable<any>{
+     return this.http.get<any>(`${this.apiUrl}?email=${user.authUser}&password=${user.authPass}`) 
       .pipe(
-        map(response => {
-          if (response && response.token) {
-            localStorage.setItem('authToken', response.token); // Armazena o token retornado
-            return { success: true, token: response.token, user: response.user };
+        map(user => {
+          if (user) {
+            // localStorage.setItem('authToken',this.generateToken()); 
+            localStorage.setItem('user',JSON.stringify(user))
+            return user;
           } else {
-            return { success: false }; 
+            return "invalid credentials"; 
           }
         })
       );
 }
-///home/dell/host-app/projects/shell/db.json
-public login2(){
-  this.http.get("db.json").subscribe((res:any) => {
-    console.log(res)
-  })
-}
 
- 
+
   public isAuthenticated(): boolean {
     return !!localStorage.getItem('authToken');
   }

@@ -1160,6 +1160,12 @@
       "name": "",
       "email": "",
       "password": ""
+    },
+    {
+      "id": "d80f",
+      "name": "Leticia",
+      "email": "leticia@leticia.com",
+      "password": "101010"
     }
   ],
   "publishers": [

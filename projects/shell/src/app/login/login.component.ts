@@ -1,90 +1,129 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { OrchestratorService } from '../services/orchestrator/orchestrator.service';
 import { AuthService } from '../services/auth/auth.service';
-import { Profile, User } from '../models/login';
+import { Profile } from '../models/login';
 import { Router } from '@angular/router';
 import { ProfileService } from '../services/profile/profile.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 
-  username: string = '';
-  password: string = '';
-
-  fullname: string = '';
-  email: string = '';
-  pass: string = '';
-  passRepit: string = '';
+  private users: Profile[] = [];
   
   loginFailed: boolean = false;
+
+  public formLogin: FormGroup;
+  public formProfile: FormGroup;
+ 
 
   public orcService = inject(OrchestratorService);
   private authService = inject(AuthService);
   private router = inject(Router);
-  public profileService = inject(ProfileService)
+  public profileService = inject(ProfileService);
 
-  public onSubmit(event: Event): void{
-
-    event.preventDefault();
-    event.defaultPrevented;
-    const user: User = {
-        authUser: this.username,
-        authPass: this.password
-    };
-  
-  this.authService.login(user).subscribe( {
-    next: response => {
-      if(response.success){
-        this.router.navigate(['home'])
-        console.log('Autorizado')
-      }
-    },
-    error: error => {
-      console.log('Não Autorizado:',error);
-      this.loginFailed = true;
-    }
+  constructor(
+    private fb: FormBuilder,
+  ){
+    this.formLogin = fb.group({
+      emailUser: ['',[Validators.required]],
+      passw: ['',[Validators.required]]
   })
-}
+
+  this.formProfile = fb.group({
+    name: ['',[Validators.required]],
+    email: ['',[Validators.required]],
+    pass: ['',[Validators.required]],
+    passRepit: ['',[Validators.required]],
+  })
+  }
+  
+  ngOnInit(){
+    this.profileService.listUser().subscribe( (data: Profile[]) =>
+      
+    { if(data.length > 0){
+      this.users = data
+    }if(data.length === 0){
+      console.log(' user list empty')
+    }
+      
+    },error => {
+      console.log('data call error')
+    });
+  }
+
+//   public onSubmit_(event: Event): void{
+
+//     event.preventDefault();
+//     event.defaultPrevented;
+//     const user: User = {
+//         authUser: this.username,
+//         authPass: this.password
+//     };
+
+//     this.authService.login(user).subscribe(
+      
+//       (response) => {
+//         if(response){
+//           this.router.navigate(['booksCatalog'])
+//           console.log('Autorizado')
+//         }
+//       },
+//     //   (error) => {
+//     //     console.log('Não Autorizado:',error);
+//     //     this.loginFailed = true;      
+//     // }
+//   )
+// }
 
 
-  public onsubmitRegister(){
-    const passValid: boolean = this.validatePass(this.pass);
-    if(passValid){
-      const profile: Profile = {
-        name: this.fullname,
-        email: this.email,
-        password: this.pass,
-   }
+  public onsubmitProfile(event: Event){
+    // event.preventDefault();
+    
+    console.log('submeter profile',this.formProfile.value)
+    const validPass = this.validatePass(
+      this.formProfile.controls['pass'].value, 
+      this.formProfile.controls['passRepit'].value);
+    if(this.formProfile.valid && validPass){
 
-   this.profileService.creat(profile).subscribe(
-    resp=>{
-      console.log(resp)
-    },
-    error => { console.log(error) },
-    () =>{ }
-   )
+      let profile: Profile = {
+        name: this.formProfile.controls['name'].value,
+        email:this.formProfile.controls['email'].value,
+        password:this.formProfile.controls['pass'].value,
+      }
 
-   this.profileService.listUser().subscribe(
-   resp => { console.log(resp) }
-   )
- 
+    this.profileService.create(profile).subscribe(
+    (resp) => { 
+      console.log('User created sussess',resp) 
+    })
+    this.orcService.formRegister.set(true);
+    }
 
   }
    
-   
+  private validatePass(pass1: string, pass2: string): boolean{
+   return pass1 === pass1 ? true : false
   }
 
-  private validatePass(password: string):boolean{
-    return this.passRepit === password ? true : false;
-  }
+  public onSubmitLogin(){
+    // event.preventDefault();
+    const email = this.formLogin.get('emailUser')?.value;
+    const pass = this.formLogin.get('passw')?.value;
+    console.log(email, email)
+    this.profileService.getByEmail(email).subscribe(profile => {
+      if(profile.length > 0){
+        profile[0].email === email && profile[0].password === pass? this.router.navigate(['booksCatalog']) : false
+      }else{
+      console.log('submit login');  
+      }
 
-  public onSubmit_(event: Event){
-    console.log('submit login')
-    this.router.navigate(['header']); 
+    })
+    
+    
   }
 
   public listUser(){
@@ -102,7 +141,9 @@ export class LoginComponent {
     {
       if(resp && resp.id)
       console.log(resp, "deleted com success")
-    })
+    },
+  
+  )
   }
 
   public updateUser(obj: Profile, id:string){
@@ -116,6 +157,26 @@ export class LoginComponent {
     })
   }
 
+  public startProfile(){
+    this.orcService.formRegister.set(true);
+    this.cleanForm(1);
+    
+  }
+
+  private cleanForm(v: number){
+    
+    if(v === 1){
+      this.formProfile.controls['name'].setValue('');
+      this.formProfile.controls['email'].setValue('');
+      this.formProfile.controls['pass'].setValue('');
+      this.formProfile.controls['passRepit'].setValue('');
+    }
+    if(v === 2){
+      this.formLogin.controls['emailUser'].setValue('');
+      this.formLogin.controls['passw'].setValue('');
+    }
+    
+  }
 
 
 }

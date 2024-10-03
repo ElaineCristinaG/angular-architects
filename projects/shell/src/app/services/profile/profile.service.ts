@@ -15,7 +15,7 @@ export class ProfileService {
     private http: HttpClient,
   ) { }
 
-  public creat(user: Profile):Observable<Object>{
+  public create(user: Profile):Observable<Object>{
     return this.http.post(`${this.apiUrl}`,user);
   }
 
@@ -28,6 +28,10 @@ export class ProfileService {
 
   public update(obj: Profile, id: string): Observable<Profile>{
     return this.http.put<Profile>(`${this.apiUrl}/${id}`,obj)
+  }
+
+  public getByEmail(email: string) :Observable<Profile[]>{
+return this.http.get<Profile[]>(`${this.apiUrl}?email=${encodeURIComponent(email)}`)
   }
 
 }

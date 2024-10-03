@@ -19,6 +19,7 @@
             width: 250px;
             align-items: center;
             justify-content: center;
+            text-align: center;
            img{
             max-width: 100%;
             height: auto;
@@ -81,12 +82,13 @@
             }           
            }
         }
-        .box_btn_login{
+        .box_btn{
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
+            justify-content: center;
             width: 100%;
             padding-top: 5%;
+            gap:2%;
             @media (max-width: 850px) {
                 flex-direction: column;
                 justify-content: center;
@@ -97,19 +99,33 @@
             .butt{
                 width: 150px;
                 height: 36px;
-                border:1px solid var(--color-green-1);
-                background-color: var(--color-green-2);
+                border:none;
                 border-radius: 8px;
                 color: var(--color-green-0);
                 font-size: 1rem;
                 cursor: pointer;
                 @media (max-width: 1024px) {
                     width: 110px;
-                }
-                
+                } 
             }
+            .btn_close{
+                background-color: var(--color-yeloow-1);
+                color: var(--color-orange-2);
+            }
+            .btn_submit{
+                background-color: var(--color-green-2);
+            }
+           
         }
+        .box_form{
+            display: flex;
+            flex-direction: column;
+            gap:20px;
+        }
+        
+     
 
     }
 }
+
 

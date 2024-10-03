@@ -1,7 +1,7 @@
 <section class="container_login"id="login">
 
 
-        <form class="box_login" (ngSubmit)="onSubmit($event)">
+        <div class="box_login" >
 
             <div class="box_title">
                 @if(!orcService.formRegister()){
@@ -12,51 +12,57 @@
             </div>
 
             @if(!orcService.formRegister()){
+                
+            <form class="box_form" [formGroup]="formLogin"  >
                 <div class="box_inputs">
                     <div class="box_icon_login"><img src="assets/images/icons/user_login.png" alt="icon user"></div>
-                    <input required id="username" ngModel  name="username" type="text" placeholder="Enter your user" [ngClass]="{'error':loginFailed,'success': !loginFailed}">
+                    <input  id="username"  formControlName="emailUser"type="text" placeholder="Enter your user" [ngClass]="{'error':loginFailed,'success': !loginFailed}">
                 </div>
                 
                 <div class="box_inputs ">
                     <div class="box_icon_login"><img src="assets/images/icons/pass_login.svg" alt="icon password"></div>
-                    <input required id="password" ngModel name="password" type="password" placeholder="Enter your password" [ngClass]="{'error':loginFailed,'success': !loginFailed}">
+                    <input required id="password"  formControlName="passw" type="password" placeholder="Enter your password" [ngClass]="{'error':loginFailed,'success': !loginFailed}">
                 </div>
         
-                <div class="box_btn_login">
-                    <button class="butt" (click)="orcService.formRegister.set(true)">Cadastre-se</button> 
-                    <button class="butt" type="submit">Next</button>
+                <div class="box_btn">
+                    <button class="butt btn_close" (click)="startProfile()">Register</button> 
+                    <button class="butt btn_submit" (click)="onSubmitLogin()">Next</button>
                 </div>
+            </form>
             }
             @else{
-                <div class="box_inputs ">
-                    <div class="labelForm"><p for="fullname"> Name</p></div>
-                    <input class="inputRegister" required id="fullname" ngModel  name="fullname" type="text" placeholder="" >
-                </div>
-                
-                <div class="box_inputs ">
-                    <div class="labelForm"><p for="email"> Email</p></div>
-                    <input class="inputRegister" required id="email" ngModel name="email" type="email" placeholder="" >
-                </div>
+                <form class="box_register"[formGroup]="formProfile"  >
+                    <div class="box_inputs ">
+                        <div class="labelForm"><p for="name"> Name</p></div>
+                        <input class="inputRegister" id="name"  formControlName="name" type="text" placeholder="" >
+                    </div>
+                    
+                    <div class="box_inputs ">
+                        <div class="labelForm"><p for="email"> Email</p></div>
+                        <input class="inputRegister"  id="email" formControlName="email"  type="email" placeholder="" >
+                    </div>
 
-                <div class="box_inputs inputRegister">
-                    <div class="labelForm"><p for="pass"> Password</p></div>
-                    <input class="inputRegisterPass" required id="pass" ngModel name="pass" type="password" placeholder="" [ngClass]="{'error':loginFailed,'success': !loginFailed}">
-                </div>
+                    <div class="box_inputs inputRegister">
+                        <div class="labelForm"><p for="pass"> Password</p></div>
+                        <input class="inputRegisterPass"  id="pass" formControlName="pass"  type="password" placeholder="" [ngClass]="{'error':loginFailed,'success': !loginFailed}">
+                    </div>
 
-                <div class="box_inputs ">
-                     <div class="labelForm"><p for="passRepit"> Repeat pass</p></div>
-                    <input class="inputRegisterPass" required id="passRepit" ngModel name="passRepit" type="password" placeholder="" [ngClass]="{'error':loginFailed,'success': !loginFailed}">
-                </div>
-        
-                <div class="box_btn_login ">
-                    <button class="butt" (click)="onsubmitRegister()">Save</button>
-                    <button class="butt" (click)="orcService.formRegister.set(false)">Close</button>
-                </div>
-                
+                    <div class="box_inputs ">
+                        <div class="labelForm"><p for="passRepit"> Repeat pass</p></div>
+                        <input class="inputRegisterPass"  id="passRepit" formControlName="passRepit" type="password" placeholder="" [ngClass]="{'error':loginFailed,'success': !loginFailed}">
+                    </div>
+            
+                    <div class="box_btn">
+                        <button class="butt btn_close" (click)="orcService.formRegister.set(false)">Close</button>
+                        <button class="butt btn_submit" type="submit" [disabled]="!formProfile.valid"(click)="onsubmitProfile($event)">Save</button>
+                    </div>
+                    
+                </form>
             }
             
-        </form>  
+        </div>  
         
 
 
 </section>
+<button routerLink="/booksCatalog">Books</button>
