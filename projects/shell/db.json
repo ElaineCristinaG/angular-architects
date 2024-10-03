@@ -1088,6 +1088,28 @@
       "pages": 209,
       "title": "Things Fall Apart",
       "year": 1958
+    },
+    {
+      "id": "06789788",
+      "author": "Chinua Achebe",
+      "country": "Nigeria",
+      "imageLink": "images/things-fall-apart.jpg",
+      "language": "English",
+      "link": "https://en.wikipedia.org/wiki/Things_Fall_Apart",
+      "pages": 209,
+      "title": "Things Fall Apart",
+      "year": 1958
+    },
+    {
+      "id": "06789788",
+      "author": "Chinua Achebe",
+      "country": "Nigeria",
+      "imageLink": "images/things-fall-apart.jpg",
+      "language": "English",
+      "link": "https://en.wikipedia.org/wiki/Things_Fall_Apart",
+      "pages": 209,
+      "title": "Things Fall Apart",
+      "year": 1958
     }
   ],
   "profile": [
@@ -1126,6 +1148,18 @@
       "email": "testet@testet.com",
       "password": "6574859",
       "name": "nome de teste"
+    },
+    {
+      "id": "453e",
+      "name": "",
+      "email": "",
+      "password": ""
+    },
+    {
+      "id": "d47a",
+      "name": "",
+      "email": "",
+      "password": ""
     }
   ],
   "publishers": [
