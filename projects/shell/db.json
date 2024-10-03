@@ -1095,25 +1095,37 @@
       "id": "1",
       "email": "user1@example.com",
       "password": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
-      "roles": "user"
+      "name": "user"
     },
     {
       "id": "2",
       "email": "user2@example.com",
       "password": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
-      "roles": "user"
+      "name": "user"
     },
     {
       "id": "3",
       "email": "user3@example.com",
       "password": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
-      "roles": "user"
+      "name": "user"
     },
     {
       "id": "4",
       "email": "user4@example.com",
       "password": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
-      "roles": "user"
+      "name": "user"
+    },
+    {
+      "email": "alfredo@teste.com",
+      "password": "010101",
+      "name": "Alfredo",
+      "id": "7d35"
+    },
+    {
+      "id": "66c4",
+      "email": "testet@testet.com",
+      "password": "6574859",
+      "name": "nome de teste"
     }
   ],
   "publishers": [
