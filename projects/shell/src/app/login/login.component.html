@@ -1,26 +1,62 @@
 <section class="container_login"id="login">
 
 
+        <form class="box_login" (ngSubmit)="onSubmit($event)">
 
-        <form class="box_login" (ngSubmit)="checkUser()">
-            <div class="icon_title">
-                <img src="assets/images/image-book/books_library_1768.png" alt="">
+            <div class="box_title">
+                @if(!orcService.formRegister()){
+                    <img src="assets/images/image-book/books_library_1768.png" alt=""> 
+                }
+                @else{ <h2 class="title">Register Now</h2> }
+                     
             </div>
+
+            @if(!orcService.formRegister()){
+                <div class="box_inputs">
+                    <div class="box_icon_login"><img src="assets/images/icons/user_login.png" alt="icon user"></div>
+                    <input required id="username" ngModel  name="username" type="text" placeholder="Enter your user" [ngClass]="{'error':loginFailed,'success': !loginFailed}">
+                </div>
+                
+                <div class="box_inputs ">
+                    <div class="box_icon_login"><img src="assets/images/icons/pass_login.svg" alt="icon password"></div>
+                    <input required id="password" ngModel name="password" type="password" placeholder="Enter your password" [ngClass]="{'error':loginFailed,'success': !loginFailed}">
+                </div>
         
-            <div class="box_inputs">
-                <div class="box_icon_login"><img src="assets/images/icons/user_login.png" alt="icon user"></div>
-                <input required id="username" ngModel  name="username" type="text" placeholder="Enter your user" [ngClass]="{'error':loginFailed,'success': !loginFailed}">
-            </div>
-            <div class="box_inputs ">
-                 <div class="box_icon_login"><img src="assets/images/icons/pass_login.svg" alt="icon password"></div>
-                <input required id="password" ngModel name="password" type="text" placeholder="Enter your password" [ngClass]="{'error':loginFailed,'success': !loginFailed}">
-            </div>
-    
-            <div class="box_btn_login">
-                <button class="butt" (click)="registration()">Cadastre-se</button> 
-                <button class="butt" type="submit">Next</button>
-            </div>
+                <div class="box_btn_login">
+                    <button class="butt" (click)="orcService.formRegister.set(true)">Cadastre-se</button> 
+                    <button class="butt" type="submit">Next</button>
+                </div>
+            }
+            @else{
+                <div class="box_inputs ">
+                    <div class="labelForm"><p for="fullname"> Name</p></div>
+                    <input class="inputRegister" required id="fullname" ngModel  name="fullname" type="text" placeholder="" >
+                </div>
+                
+                <div class="box_inputs ">
+                    <div class="labelForm"><p for="email"> Email</p></div>
+                    <input class="inputRegister" required id="email" ngModel name="email" type="email" placeholder="" >
+                </div>
+
+                <div class="box_inputs inputRegister">
+                    <div class="labelForm"><p for="pass"> Password</p></div>
+                    <input class="inputRegisterPass" required id="pass" ngModel name="pass" type="password" placeholder="" [ngClass]="{'error':loginFailed,'success': !loginFailed}">
+                </div>
+
+                <div class="box_inputs ">
+                     <div class="labelForm"><p for="passRepit"> Repeat pass</p></div>
+                    <input class="inputRegisterPass" required id="passRepit" ngModel name="passRepit" type="password" placeholder="" [ngClass]="{'error':loginFailed,'success': !loginFailed}">
+                </div>
+        
+                <div class="box_btn_login ">
+                    <button class="butt" (click)="onsubmitRegister()">Save</button>
+                    <button class="butt" (click)="orcService.formRegister.set(false)">Close</button>
+                </div>
+                
+            }
             
-        </form>
+        </form>  
+        
+
 
 </section>
