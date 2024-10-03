@@ -24,7 +24,7 @@ const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPl
 
 module.exports = {
   output: {
-    publicPath: "http://localhost:3000/", // URL da aplicação principal
+    publicPath: "http://localhost:4000/", 
   },
   plugins: [
     new ModuleFederationPlugin({
@@ -34,7 +34,7 @@ module.exports = {
 
        
   },
-      shared: ["@angular/core", "@angular/common", "@angular/router"], // Compartilhar dependências comuns
+      shared: ["@angular/core", "@angular/common", "@angular/router"], 
     }),
   ],
 };
