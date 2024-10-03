@@ -15,7 +15,8 @@ import { BooksCatalogModule } from './books-catalog/books-catalog.module';
     BrowserModule,
     AppRoutingModule,
     CommonModule,
-  
+    RouterModule,
+    BooksCatalogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

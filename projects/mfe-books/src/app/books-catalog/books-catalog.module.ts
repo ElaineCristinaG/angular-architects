@@ -1,11 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BooksCatalogComponent } from './books-catalog.component'
-import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { AppRoutingModule } from '../app-routing.module';
-
-
 
 @NgModule({
   declarations: [
@@ -13,8 +9,12 @@ import { AppRoutingModule } from '../app-routing.module';
   ],
   imports: [
     CommonModule,
-    BrowserModule,
-    AppRoutingModule,
+    RouterModule.forChild([
+      {
+        path:'',
+        component: BooksCatalogComponent
+      },
+    ])
   ]
 })
 export class BooksCatalogModule { }
