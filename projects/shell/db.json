@@ -1196,6 +1196,18 @@
       "name": "abacate",
       "email": "abacate@gm.com",
       "password": "aba"
+    },
+    {
+      "id": "a1c8",
+      "name": "elaine cristina",
+      "email": "elaine.cristina@elaine.com",
+      "password": "4321"
+    },
+    {
+      "id": "e210",
+      "name": "daniel carminhola",
+      "email": "testedaniel@daniel.com",
+      "password": "54321"
     }
   ],
   "publishers": [
