@@ -116,7 +116,7 @@ export class LoginComponent implements OnInit{
     console.log(email, email)
     this.profileService.getByEmail(email).subscribe(profile => {
       if(profile.length > 0){
-        profile[0].email === email && profile[0].password === pass? this.router.navigate(['home']) : false
+        profile[0].email === email && profile[0].password === pass? this.router.navigate(['booksCatalog']) : false
       }else{
       console.log('submit login');  
       }
