@@ -36,7 +36,9 @@
 							"projects/shell/src/assets"
 						],
 						"styles": [
-							"projects/shell/src/styles.scss"
+							"projects/shell/src/styles.scss",
+							"node_modules/bootstrap/dist/css/bootstrap.min.css"
+
 						],
 						"scripts": [],
 						"main": "projects/shell/src/main.ts",
@@ -107,9 +109,12 @@
 							"projects/shell/src/assets"
 						],
 						"styles": [
-							"projects/shell/src/styles.scss"
+							"projects/shell/src/styles.scss",
+							"/node_modules/bootstrap/dist/css/bootstrap.min.css"
 						],
-						"scripts": []
+						"scripts": [
+							"/node_modules/bootstrap/dist/js/bootstrap.min.js"
+						]
 					}
 				}
 			}
@@ -147,9 +152,12 @@
 							"projects/mfe-books/src/assets"
 						],
 						"styles": [
-							"projects/mfe-books/src/styles.scss"
+							"projects/mfe-books/src/styles.scss",
+							"node_modules/bootstrap/dist/css/bootstrap.min.css"
 						],
-						"scripts": [],
+						"scripts": [
+							"node_modules/bootstrap/dist/js/bootstrap.min.js"
+						],
 						"main": "projects/mfe-books/src/main.ts",
 						"extraWebpackConfig": "projects/mfe-books/webpack.config.js",
 						"commonChunk": false
@@ -218,9 +226,12 @@
 							"projects/mfe-books/src/assets"
 						],
 						"styles": [
-							"projects/mfe-books/src/styles.scss"
+							"projects/mfe-books/src/styles.scss",
+							"node_modules/bootstrap/dist/css/bootstrap.min.css"
 						],
-						"scripts": []
+						"scripts": [
+							"node_modules/bootstrap/dist/js/bootstrap.min.js"
+						]
 					}
 				}
 			}

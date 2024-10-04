@@ -1166,6 +1166,36 @@
       "name": "Leticia",
       "email": "leticia@leticia.com",
       "password": "101010"
+    },
+    {
+      "id": "68aa",
+      "name": "maria laura",
+      "email": "maria@maria.com",
+      "password": "2727"
+    },
+    {
+      "id": "672d",
+      "name": "maria laura",
+      "email": "maria@maria.com",
+      "password": "2727"
+    },
+    {
+      "id": "9f96",
+      "name": "maria laura",
+      "email": "maria@maria.com",
+      "password": "2727"
+    },
+    {
+      "id": "57f6",
+      "name": "kito susi",
+      "email": "kito@kito.com",
+      "password": "2121"
+    },
+    {
+      "id": "166d",
+      "name": "abacate",
+      "email": "abacate@gm.com",
+      "password": "aba"
     }
   ],
   "publishers": [
