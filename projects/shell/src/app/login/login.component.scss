@@ -5,12 +5,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 90vh;
+    width: 100vw;
     .box_login{
         background-color: var(--color-green-0);
         border-radius: 10px;
-        width: 25%;
-        padding: 5%;
+       
+        padding: 60px;
         display: flex;
         flex-direction: column;
         gap: 20px;
@@ -127,5 +128,6 @@
 
     }
 }
+
 
 

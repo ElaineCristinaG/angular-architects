@@ -98,7 +98,8 @@ export class LoginComponent implements OnInit{
 
     this.profileService.create(profile).subscribe(
     (resp) => { 
-      console.log('User created sussess',resp) 
+      console.log('User created sussess',resp) ;
+      this.router.navigate(['/'])
     })
     this.orcService.formRegister.set(true);
     }
@@ -110,13 +111,12 @@ export class LoginComponent implements OnInit{
   }
 
   public onSubmitLogin(){
-    // event.preventDefault();
     const email = this.formLogin.get('emailUser')?.value;
     const pass = this.formLogin.get('passw')?.value;
     console.log(email, email)
     this.profileService.getByEmail(email).subscribe(profile => {
       if(profile.length > 0){
-        profile[0].email === email && profile[0].password === pass? this.router.navigate(['booksCatalog']) : false
+        profile[0].email === email && profile[0].password === pass? this.router.navigate(['home']) : false
       }else{
       console.log('submit login');  
       }
