@@ -33,7 +33,7 @@
             </form>
             }
             @else{
-                <form class="box_register"[formGroup]="formProfile"  >
+                <form class="box_form"[formGroup]="formProfile"  >
                     <div class="box_inputs ">
                         <div class="labelForm"><p for="name"> Name</p></div>
                         <input class="inputRegister" id="name"  formControlName="name" type="text" placeholder="" >
@@ -50,7 +50,7 @@
                     </div>
 
                     <div class="box_inputs ">
-                        <div class="labelForm"><p for="passRepit"> Repeat pass</p></div>
+                        <div class="labelForm"><p for="passRepit"> Confirm</p></div>
                         <input class="inputRegisterPass"  id="passRepit" formControlName="passRepit" type="password" placeholder="" [ngClass]="{'error':loginFailed,'success': !loginFailed}">
                     </div>
             

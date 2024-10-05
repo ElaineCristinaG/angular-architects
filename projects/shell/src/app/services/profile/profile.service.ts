@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Profile } from '../../models/login';
+import { Profile, ProfileResponse } from '../../models/login';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -30,8 +30,8 @@ export class ProfileService {
     return this.http.put<Profile>(`${this.apiUrl}/${id}`,obj)
   }
 
-  public getByEmail(email: string) :Observable<Profile[]>{
-return this.http.get<Profile[]>(`${this.apiUrl}?email=${encodeURIComponent(email)}`)
+  public getByEmail(email: string) :Observable<ProfileResponse[]>{
+    return this.http.get<ProfileResponse[]>(`${this.apiUrl}?email=${encodeURIComponent(email)}`)
   }
 
 }

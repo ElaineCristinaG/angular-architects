@@ -5,7 +5,7 @@ import { Injectable, signal } from '@angular/core';
 })
 export class OrchestratorService {
  
-  public formRegister = signal(false);
+  public formRegister = signal(true);
   public openBooks = signal(false);
 
   constructor() { }

@@ -107,7 +107,7 @@ export class LoginComponent implements OnInit{
   }
    
   private validatePass(pass1: string, pass2: string): boolean{
-   return pass1 === pass1 ? true : false
+   return pass1 === pass2 ? true : false
   }
 
   public onSubmitLogin(){
@@ -115,10 +115,16 @@ export class LoginComponent implements OnInit{
     const pass = this.formLogin.get('passw')?.value;
     console.log(email, email)
     this.profileService.getByEmail(email).subscribe(profile => {
+      console.log(profile)
       if(profile.length > 0){
-        profile[0].email === email && profile[0].password === pass? this.router.navigate(['booksCatalog']) : false
+        
+        if (profile[0].email === email && profile[0].password === pass) {
+          
+          //localStorage.setItem('userProfile', JSON.stringify(profile[0]));
+          this.router.navigate(['booksCatalog']);
+        }else{ console.log("email ou senha inválido")} 
       }else{
-      console.log('submit login');  
+      console.log('User not existing');  
       }
 
     })

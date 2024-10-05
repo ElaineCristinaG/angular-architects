@@ -8,6 +8,12 @@ export interface Profile {
     email: string
     password: string
 }
+export interface ProfileResponse {
+    name: string
+    email: string
+    password: string
+    id: string
+}
 
 export interface Publisher {
   id: number;
