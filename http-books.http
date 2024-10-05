@@ -5,30 +5,30 @@ POST http://localhost:3000/books HTTP/1.1
 content-type: application/json
 
 {
-    "author": "Chinua Achebe",
-    "country": "Nigeria",
-    "imageLink": "images/things-fall-apart.jpg",
-    "language": "English",
+    "author": "Livro Teste2",
+    "country": "Teste",
+    "imageLink": "Teste",
+    "language": "teste",
     "link": "https://en.wikipedia.org/wiki/Things_Fall_Apart",
-    "pages": 209,
-    "title": "Things Fall Apart",
-    "year": 1958,
-    "id": "06789788"
+    "pages": 123,
+    "title": "Teste",
+    "year": 3000,
+    "id": "000"
 }
 
 ###
-PUT http://localhost:3000/books HTTP/1.1
+PUT http://localhost:3000/books/:555 HTTP/1.1
 content-type: application/json
 {
-      "author": "Chinua Achebe Modified",
-      "country": "Nigeria",
-      "imageLink": "images/things-fall-apart.jpg",
-      "language": "English",
-      "link": "https://en.wikipedia.org/wiki/Things_Fall_Apart\n",
-      "pages": 1000,
-      "title": "Things Fall Apart",
-      "year": 1958,
-   
+    "author": "Livro Teste Editado",
+    "country": "Teste",
+    "imageLink": "Teste",
+    "language": "teste",
+    "link": "https://en.wikipedia.org/wiki/Things_Fall_Apart",
+    "pages": 123,
+    "title": "Teste",
+    "year": 3000,
+    "id": "555",
 }
 
 
