@@ -1,0 +1,18 @@
+@if(true){
+    <div class="feedback" [ngClass]="[styleGeral]">
+
+        <p class="msg">{{text}} </p>
+
+    @if(description != undefined){
+        <p class="desc"[ngClass]="[styleTitle]" >{{description}} </p>
+    }
+
+       
+    <div class="icon">
+        <img [src]="url">
+    </div>  
+ 
+    
+    </div>  
+}
+

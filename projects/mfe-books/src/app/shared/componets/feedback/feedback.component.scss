@@ -1,0 +1,40 @@
+.feedback{
+    width: 250px;
+    padding: 25px;
+    border-radius: 10px;
+    &.success{
+        border: 2px solid var(--color--green-2);
+        background-color: var(--color--green-0);
+    }
+    &.warning{
+        border: 2px solid var(--color-warning);
+        background-color: var(--color-warning);
+    }
+    &.error{
+        border: 2px solid var(--color-error);
+        background-color: var(--color-error);
+    }
+
+    .msg{
+        font-size: 1.5rem;
+        &.successTitle{
+            color: var(--color--green-2)
+        }
+        &.warningTitle{
+            color: var(--color-warning)
+        }
+        &.errorTitle{
+            color: var(--color-error)
+        }
+    }
+    .desc{
+        font-size: 1rem;
+        color: var(--color-black)
+    }
+    .icon{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+}
