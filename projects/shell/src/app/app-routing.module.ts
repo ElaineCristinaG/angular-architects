@@ -15,14 +15,15 @@ const routes: Routes = [
   },
   {
     path:'editBook',
-    loadChildren: () => import('../../../mfe-books/src/app/edit-book/edit-book.module')
-    .then(m => m.EditBookModule)
+    loadChildren: () => import('../../../mfe-books/src/app/books-catalog/edit-book/edit-book.component')
+    .then(m => m.EditBookComponent)
   },
   {
     path:'publisher',
     loadChildren: () => import('../../../mfe-publisher/src/app/publisher-list/publisher-list.module')
     .then(m => m.PublisherListModule)
-  }
+  },
+  
 
 ];
 

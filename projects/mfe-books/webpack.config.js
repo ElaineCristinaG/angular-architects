@@ -34,6 +34,8 @@ module.exports = {
          filename: "remoteEntry.js",
          exposes:{
           './BooksModule': './projects/mfe-app/src/app/books/books.module.ts',
+          './EditBookComponent':'./projects/mfe-books/src/app/edit-book/edit-book.component.ts'
+  
         },
 
 

@@ -5,9 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { BooksCatalogModule } from './books-catalog/books-catalog.module';
 import { provideHttpClient } from '@angular/common/http';
 import { BookService } from './services/book.service';
+import { BooksCatalogModule } from './books-catalog/books-catalog.module';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { BookService } from './services/book.service';
     AppRoutingModule,
     CommonModule,
     RouterModule,
-    BooksCatalogModule
+    BooksCatalogModule,
   ],
   providers: [
     BookService,
