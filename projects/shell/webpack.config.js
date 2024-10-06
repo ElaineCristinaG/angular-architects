@@ -30,8 +30,10 @@ module.exports = {
       
         // remotes host
         name: "shell",
-        remotes: {
+        remotes: 
+        {
           "mfe-books": "mfe-books@http://localhost:4200/remoteEntry.js",
+          "mfe-publisher": "mfe-books@http://localhost:4201/remoteEntry.js",
         },
 
         shared: share({
