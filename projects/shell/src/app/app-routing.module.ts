@@ -13,6 +13,16 @@ const routes: Routes = [
     loadChildren: () => import('../../../mfe-books/src/app/books-catalog/books-catalog.module')
     .then(m => m.BooksCatalogModule)
   },
+  {
+    path:'editBook',
+    loadChildren: () => import('../../../mfe-books/src/app/edit-book/edit-book.module')
+    .then(m => m.EditBookModule)
+  },
+  {
+    path:'publisher',
+    loadChildren: () => import('../../../mfe-publisher/src/app/publisher-list/publisher-list.module')
+    .then(m => m.PublisherListModule)
+  }
 
 ];
 

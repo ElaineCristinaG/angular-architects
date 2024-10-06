@@ -7,6 +7,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { AuthService } from './services/auth/auth.service';
 import { LoginModule } from './login/login.module';
 import { HeaderModule } from './header/header.module';
+import { PublisherListModule } from '../../../mfe-publisher/src/app/publisher-list/publisher-list.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HeaderModule } from './header/header.module';
     BrowserModule,
     AppRoutingModule,
     LoginModule,
-    HeaderModule
+    HeaderModule,
+    PublisherListModule,
   ],
   providers:
   [
