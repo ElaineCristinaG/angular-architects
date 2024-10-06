@@ -9,22 +9,19 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
+        <li class="nav-item ">
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
          <li class="nav-item">
           <a class="nav-link " aria-current="page" aria-disabled="true" href="/booksCatalog">BooksCatalog</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" aria-current="page" href="#">Publishers</a>
+          <a class="nav-link " aria-current="page" href="/publisher">Publishers</a>
         </li>
       </ul>
-      <form class="d-flex p-5 " role="search" >
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" >
-        <button class="btn btn-outline-success" >Search</button>
-      </form>
-      <div></div>
+      
     </div>
+      <label class="p-2 fw-medium fs-4 text-light-emphasis">{{ welcome + ' ' + orcService.user().name}}</label>
   </div>
 </nav>
 
