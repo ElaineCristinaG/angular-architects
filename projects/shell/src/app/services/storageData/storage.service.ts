@@ -20,7 +20,8 @@ export class StorageService {
   }
 
   setDataStorage(key:string, data: Publisher[]){
-    localStorage.setItem('key',JSON.stringify(data[0]))
+    localStorage.setItem(key,JSON.stringify(data));
+    window.dispatchEvent(new Event('storage-updated'));
   }
 
 }

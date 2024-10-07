@@ -22,10 +22,13 @@ export class AppComponent implements OnInit{
  }
 
   getPublishers(){
+    console.log('init publisher shell')
     const obs: Observer<any> = {
       next: (data) => {
-          this.publishers.set(data)
-          this.storageService.setDataStorage('publishers_shell',this.publishers())
+       
+          this.publishers.set(data);
+           console.log(this.publishers()) //for debug
+          this.storageService.setDataStorage('publishers_shell',data)
       },
       error: (error) => {
          if (error.error && error.error.message) {
@@ -33,10 +36,29 @@ export class AppComponent implements OnInit{
         } 
       },
       complete: () => {
-        console.log('Data Publishers in LocalStorage');
+        console.log('Data Publishers in LocalStorage, key: publishers_shell');
       }
     }
     this.storageService.getAll().subscribe(obs);
+   
     
   }
+  //teste
+  private getStoragePublishers(): Publisher[] | null {
+  const pub = localStorage.getItem('publishers_shell');
+  console.log(pub)
+  if (pub) {
+    try {
+      const parsePub: Publisher[] = JSON.parse(pub);
+      console.log(parsePub);
+      return parsePub;
+    } catch (error) {
+      console.error('Erro ao parsear o JSON do localStorage:', error);
+      return null; 
+    }
+  }
+  
+  return null; 
+}
+
 }

@@ -1,13 +1,30 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal, WritableSignal } from '@angular/core';
+import { Publisher } from '../../../../shell/src/app/models/interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PublisherService {
 
+public publisherList: WritableSignal<Publisher[]> = signal([]);
 
-get(){
-  // localStorage.get('publishers')
+
+getPublishers(){
+ console.log('service pub')
+    const pub = localStorage.getItem('publishers_shell');
+    if(pub){
+      try{
+        const parsePub: Publisher[] = JSON.parse(pub);
+        // console.log(parsePub);//for debug
+        console.log('Success in Publishers of local Storage ')
+
+      }catch (error) {
+        console.error('Erro ao parsear o JSON do localStorage:', error);
+      }
+
+    }else{
+      console.log('não tem pub')
+    }
 }
 
 }
