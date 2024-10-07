@@ -1,6 +1,6 @@
 import { Injectable, signal, WritableSignal } from '@angular/core';
 import { Book } from '../../../../../mfe-books/src/app/model/books';
-import { Profile, User } from '../../models/login';
+import { Profile, Publisher, User } from '../../models/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +28,10 @@ export class OrchestratorService {
 
   public clearProfile(): Profile{
     return { email: '',name: '',password: '' }
+  }
+
+  public inicializePublisher():Publisher{
+    return { id: 0,name:'', country: '',founded: 0,website:'' }
   }
 
 }
