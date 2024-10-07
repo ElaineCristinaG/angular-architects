@@ -1,1 +1,23 @@
-<p>publisher-list works!</p>
+<section class="containerP">
+    <div class="titleP"> 
+        <h2>Publishers</h2>
+        <button type="button" class=" btn btn-outline-success" >New Publisher</button> 
+    </div>
+    <div class="tableP">
+        <div class="row_header">
+            @for(item of headerList; track item; let idx = $index, e = $even  ){  
+                <div class="box_cell_H"><label class="cel_header">{{item}} </label></div>}
+        </div>
+        <div class="row_body">
+           
+            @for(pub of publisherList; track pub.id; let idx = $index, e = $even  ){ 
+            
+                <div class="box_cell"><label class="cel_body">{{pub.name}}   </label></div>
+                <div class="box_cell"><label class="cel_body">{{pub.founded}} </label></div>
+                <div class="box_cell"><label class="cel_body">{{pub.founded}} </label></div>
+                <div class="box_cell"><label class="cel_body">{{pub.website}} </label></div>
+                <div class="box_cell"><label class="cel_body">{{pub.name}}    </label></div>
+            }
+        </div>
+    </div>
+</section>

@@ -22,3 +22,4 @@ export interface Publisher {
   founded: number;
   website: string;
 }
+

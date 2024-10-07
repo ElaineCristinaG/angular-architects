@@ -1,10 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { OrchestratorService } from '../services/orchestrator/orchestrator.service';
 import { AuthService } from '../services/auth/auth.service';
-import { Profile } from '../models/login';
+import { Profile } from '../models/interfaces';
 import { Router } from '@angular/router';
 import { ProfileService } from '../services/profile/profile.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { StorageService } from '../services/storageData/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit{
   private authService = inject(AuthService);
   private router = inject(Router);
   public profileService = inject(ProfileService);
+  private storageService = inject(StorageService);
 
   constructor(
     private fb: FormBuilder,
@@ -120,6 +122,7 @@ export class LoginComponent implements OnInit{
         
         if (profile[0].email === email && profile[0].password === pass) {
           
+          // this.storageService.setDataStorage('user_shell',profile)
           localStorage.setItem('user', JSON.stringify(profile[0]));
            
   

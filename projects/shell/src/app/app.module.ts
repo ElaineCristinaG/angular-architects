@@ -18,7 +18,7 @@ import { PublisherListModule } from '../../../mfe-publisher/src/app/publisher-li
     AppRoutingModule,
     LoginModule,
     HeaderModule,
-    PublisherListModule,
+    
   ],
   providers:
   [
