@@ -11,13 +11,23 @@ export class OrchestratorService {
   public openBooks = signal(false);
   public openModal = signal(false);
   public openfeedback = signal(false);
+  public messageFeed = signal('');
+  public user:WritableSignal<Profile> = signal({ email: '',name: '',password: '' });
 
-  public user:WritableSignal<Profile> = signal({ email: '',id: '',name: '',password: '' });
-
-  public book: WritableSignal<Book> = signal(
-    { author: '', country: '', imageLink: '', language: '', link: '', pages: 0, title: '', year: 0, id: '' }
-  ) 
+  public book: WritableSignal<Book> = signal( this.clearBook() ) 
 
   constructor() { }
+ 
+  public reload(){
+    window.location.reload()
+  }
+
+  public clearBook(): Book{
+    return  { author: '', country: '', imageLink: '', language: '', link: '', pages: 0, title: '', year: 0, id: '' }
+  }
+
+  public clearProfile(): Profile{
+    return { email: '',name: '',password: '' }
+  }
 
 }

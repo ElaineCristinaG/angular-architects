@@ -1,0 +1,18 @@
+.feedbackTemp{
+    border: 1px solid var(--color-success);
+    p{
+       color: var(--color-success);  
+        &.success{
+            color: var(--color-success);
+            border-color: var(--color-success);
+        }
+        &.error{
+            color: var(--color-error);
+            border-color: var(--color-error);
+        }
+        &.warning{
+            color: var(--color-warning);
+            border-color: var(--color-warning);
+        }   
+    }
+}

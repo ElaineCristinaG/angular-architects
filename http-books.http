@@ -5,15 +5,15 @@ POST http://localhost:3000/books HTTP/1.1
 content-type: application/json
 
 {
-    "author": "Livro Teste2",
-    "country": "Teste",
-    "imageLink": "Teste",
+    "author": "Livro Teste3",
+    "country": "Teste3",
+    "imageLink": "Teste3",
     "language": "teste",
     "link": "https://en.wikipedia.org/wiki/Things_Fall_Apart",
     "pages": 123,
     "title": "Teste",
     "year": 3000,
-    "id": "000"
+    "id": "9999999"
 }
 
 ###

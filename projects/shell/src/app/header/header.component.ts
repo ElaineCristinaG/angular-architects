@@ -1,8 +1,7 @@
-import { Component, computed, effect, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, effect, signal } from '@angular/core';
 import { OrchestratorService } from '../services/orchestrator/orchestrator.service';
-import { BookService } from '../../../../mfe-books/src/app/services/book.service';
-import { ActivatedRoute, Router, RouterLinkActive } from '@angular/router';
-import { Profile } from '../models/login';
+import { Router } from '@angular/router';
+import { ServiceResponseMessages } from '../models/enum';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +12,8 @@ export class HeaderComponent {
 
 namePage = signal('');
 nameUser: string = ''
-welcome: string = 'Welcome'
+welcome: string = 'Welcome';
+styleMsg: string = 'success';
  
 
 
@@ -23,7 +23,17 @@ constructor(
 ){ 
 
   effect(()=>{
-    this.nameUser = orcService.user().name
+    this.nameUser = orcService.user().name;
+    let msg = orcService.messageFeed();
+    switch(msg){
+      case ServiceResponseMessages.CREATE_SUCCESS:
+      case ServiceResponseMessages.EDIT_SUCCESS:
+      case ServiceResponseMessages.DELETE_SUCCESS: this.styleMsg = 'success';
+      break
+      case ServiceResponseMessages.ERROR: this.styleMsg = 'error';     
+      break
+      case ServiceResponseMessages.TRY_AGAIN: this.styleMsg = 'warning';
+    }
   })
 }
 

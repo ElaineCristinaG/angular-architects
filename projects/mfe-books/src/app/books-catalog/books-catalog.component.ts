@@ -4,6 +4,8 @@ import { Book } from '../model/books';
 import { OrchestratorService } from '../../../../shell/src/app/services/orchestrator/orchestrator.service';
 import { Router } from '@angular/router';
 import { Profile } from '../../../../shell/src/app/models/login';
+import { Observable, Observer } from 'rxjs';
+import { ServiceResponseMessages } from '../../../../shell/src/app/models/enum';
 
 @Component({
   selector: 'app-books-catalog',
@@ -25,7 +27,7 @@ export class BooksCatalogComponent {
     id: "",
   };
 
-  public booksList: Book[] = [];
+  public booksList: WritableSignal<Book[]> = signal([]);
   public booksFiltered: WritableSignal<Book[]> = signal([]);
   public booksReserved: Book[] = []; 
 
@@ -57,10 +59,10 @@ export class BooksCatalogComponent {
   }
 
   private getBooks(){
-    this.booksList = [];
+    this.booksList.set([]);
     this.bookService.getAll().subscribe(books => {
       if(books.length > 0){
-        this.booksList = books
+        this.booksList.set(books);
         this.booksFiltered.set(books);
       }else{
         console.log('Has not Books')
@@ -70,10 +72,7 @@ export class BooksCatalogComponent {
 
   public createBook(){
    this.orcService.openModal.set(true);
-        // this.bookService.create(book).subscribe(resp =>{
-        //   console.log(resp)
-        // })
-    }
+  }
 
   public editBook(book: Book){
     this.orcService.book.set(book);
@@ -81,27 +80,48 @@ export class BooksCatalogComponent {
   }
 
   public deleteBook(event: Book){
-    this.bookService.delete(event.id).subscribe(resp => {
-      console.log('Book deleted Success')
-    })
 
+    const bookObserver : Observer<any> = {
+      next: () => {
+         this.booksList.set(this.booksList().filter(book => book.id !== event.id));
+         console.log('Book deleted Success');
+         this.orcService.messageFeed.set('Book deleted Success');
+         this.orcService.reload();
+      },
+      error: (error) => {
+        if (error.error && error.error.message) {
+          this.orcService.messageFeed.set(ServiceResponseMessages.ERROR)
+        } else {
+          this.orcService.messageFeed.set(ServiceResponseMessages.ERROR)
+        }
+      },
+      complete: () => {
+        console.log('Request completed.');
+      }
+    }
+    this.bookService.delete(event.id).subscribe(bookObserver);
   }
 
   public booking(book: Book){
     this.booksReserved.push(book);
+    console.log(this.booksReserved)
   }
 
   public filter(event: any){
     console.log('filtrar')
     const searchTerm = event.target.value.toLowerCase();
-    this.booksList = this.booksFiltered().filter(
-        card =>
-        card.title.toLowerCase().includes(searchTerm) 
-        //||
-        // card.author.toLowerCase().includes(searchTerm) ||
-        // card.country.toLowerCase().includes(searchTerm)
-    )
+    this.booksList.set(this.booksFiltered()
+    .filter(
+      card => card.title.toLowerCase().includes(searchTerm) || card.author.toLowerCase().includes(searchTerm)
+    ))
     
   }
+  public scrollToTop(): void {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' 
+  });
+}
+
 
 }
