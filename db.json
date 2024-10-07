@@ -1077,17 +1077,6 @@
       "pages": 209,
       "title": "Things Fall Apart",
       "year": 1958
-    },
-    {
-      "title": "Teste teste",
-      "author": "Livro Teste2",
-      "link": "https://en.wikipedia.org/wiki/Things_Fall_Apart",
-      "imageLink": "Teste",
-      "country": "Teste",
-      "pages": 123,
-      "year": 3000,
-      "language": "teste",
-      "id": "111111"
     }
   ],
   "profile": [

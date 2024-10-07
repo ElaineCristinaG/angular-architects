@@ -18,12 +18,18 @@
             <form class="box_form" [formGroup]="formLogin"  >
                 <div class="box_inputs">
                     <div class="box_icon_login"><img src="assets/images/icons/user_login.png" alt="icon user"></div>
-                    <input  id="username"  formControlName="emailUser"type="text" placeholder="Enter your user" [ngClass]="{'error':loginFailed,'success': !loginFailed}">
+                    <input required id="username"  formControlName="emailUser"type="text" placeholder="Enter your user" [ngClass]="{'error':loginFailed,'success': !loginFailed}">
+                @if(formLogin.get('emailUser')?.hasError('required') && (formLogin.get('emailUser')?.touched)){
+                         <div class="error" >Email is required</div>
+                    }
                 </div>
                 
                 <div class="box_inputs ">
                     <div class="box_icon_login"><img src="assets/images/icons/pass_login.svg" alt="icon password"></div>
                     <input required id="password"  formControlName="passw" type="password" placeholder="Enter your password" [ngClass]="{'error':loginFailed,'success': !loginFailed}">
+                      @if(formLogin.get('passw')?.hasError('required') && (formLogin.get('passw')?.touched)){
+                         <div class="error" >Password is required</div>
+                    }
                 </div>
         
                 <div class="box_btn">
