@@ -14,7 +14,7 @@ import { StorageService } from '../services/storageData/storage.service';
 })
 export class LoginComponent implements OnInit{
 
-  private users: Profile[] = [];
+  public users: Profile[] = [];
   
   loginFailed: boolean = false;
 

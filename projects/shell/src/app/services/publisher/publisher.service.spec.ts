@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { PublisherService } from './publisher.service';
 
-fdescribe('PublisherService', () => {
+describe('PublisherService', () => {
   let service: PublisherService;
 
   beforeEach(() => {

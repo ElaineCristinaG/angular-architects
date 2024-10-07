@@ -2,9 +2,8 @@ import { Component, signal, WritableSignal } from '@angular/core';
 import { BookService } from '../services/book.service';
 import { Book } from '../model/books';
 import { OrchestratorService } from '../../../../shell/src/app/services/orchestrator/orchestrator.service';
-import { Router } from '@angular/router';
 import { Profile } from '../../../../shell/src/app/models/interfaces';
-import { Observable, Observer } from 'rxjs';
+import { Observer } from 'rxjs';
 import { ServiceResponseMessages } from '../../../../shell/src/app/models/enum';
 
 @Component({
@@ -34,7 +33,6 @@ export class BooksCatalogComponent {
   constructor(
     private bookService: BookService,
     public orcService: OrchestratorService,
-    private router: Router,
   ){ 
       this.getBooks();
       this.startBooksCatalog()

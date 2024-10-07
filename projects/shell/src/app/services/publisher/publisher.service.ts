@@ -10,7 +10,6 @@ export class PublisherService {
 
   private apiUrl = "http://localhost:3000/publishers";
 
-
   constructor(
      private http: HttpClient
   ) {  }

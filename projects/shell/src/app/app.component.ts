@@ -1,5 +1,4 @@
 import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
-import { OrchestratorService } from './services/orchestrator/orchestrator.service';
 import { StorageService } from './services/storageData/storage.service';
 import { Observer } from 'rxjs';
 import { Publisher } from './models/interfaces';
@@ -13,7 +12,6 @@ import { PublisherService } from './services/publisher/publisher.service';
 export class AppComponent implements OnInit{
   title = 'Books & Publisher';
 
-  private orcService= inject(OrchestratorService);
   private storageService = inject(StorageService);
   private publisherService = inject(PublisherService);
 
