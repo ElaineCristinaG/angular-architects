@@ -9,22 +9,28 @@ import { PublisherService } from '../services/publisher.service';
 })
 export class PublisherListComponent implements OnInit{
 
-  public publisherList: Publisher[] = [];
+  public publishers: Publisher[] = [];
   public publisher: Publisher = { id: 0, name: '',  country: '',  founded: 0,  website: '' };
   public headerList: string[] = ['id','name','country','Founded','website'];
 
   constructor(
-    private servicePub: PublisherService,
+    private publisherService: PublisherService,
   ){
     window.addEventListener('storage-updated', () => {
-      servicePub.getPublishers();
+      publisherService.getPublishers();
     });
+
+    effect(()=>{
+      this.publishers = publisherService.publisherList();
+    })
   
   }
 
   ngOnInit(): void {
-    this.servicePub.getPublishers();
+    this.publisherService.getPublishers();
   }
+
+  
 
 
   }

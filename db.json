@@ -1346,20 +1346,6 @@
       "country": "United States",
       "founded": 1992,
       "website": "https://books.disney.com"
-    },
-    {
-      "id": "55c8",
-      "name": "Exemple Publishing Teste",
-      "country": "United States",
-      "founded": 1999,
-      "website": "https://teste.teste.com"
-    },
-    {
-      "name": "Exemple2 Publishing Change",
-      "country": "United States",
-      "founded": 3000,
-      "website": "https://teste2.change.com",
-      "id": "158e"
     }
   ]
 }

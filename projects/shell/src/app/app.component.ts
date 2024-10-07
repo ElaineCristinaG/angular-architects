@@ -3,6 +3,7 @@ import { OrchestratorService } from './services/orchestrator/orchestrator.servic
 import { StorageService } from './services/storageData/storage.service';
 import { Observer } from 'rxjs';
 import { Publisher } from './models/interfaces';
+import { PublisherService } from './services/publisher/publisher.service';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ export class AppComponent implements OnInit{
 
   private orcService= inject(OrchestratorService);
   private storageService = inject(StorageService);
+  private publisherService = inject(PublisherService);
 
   public publishers:WritableSignal<Publisher[]> = signal([]);
 
@@ -22,12 +24,12 @@ export class AppComponent implements OnInit{
  }
 
   getPublishers(){
-    console.log('init publisher shell')
+   
     const obs: Observer<any> = {
       next: (data) => {
        
           this.publishers.set(data);
-           console.log(this.publishers()) //for debug
+          //  console.log(this.publishers()) //for debug
           this.storageService.setDataStorage('publishers_shell',data)
       },
       error: (error) => {
@@ -39,26 +41,9 @@ export class AppComponent implements OnInit{
         console.log('Data Publishers in LocalStorage, key: publishers_shell');
       }
     }
-    this.storageService.getAll().subscribe(obs);
+    this.publisherService.getAll().subscribe(obs);
    
     
   }
-  //teste
-  private getStoragePublishers(): Publisher[] | null {
-  const pub = localStorage.getItem('publishers_shell');
-  console.log(pub)
-  if (pub) {
-    try {
-      const parsePub: Publisher[] = JSON.parse(pub);
-      console.log(parsePub);
-      return parsePub;
-    } catch (error) {
-      console.error('Erro ao parsear o JSON do localStorage:', error);
-      return null; 
-    }
-  }
-  
-  return null; 
-}
-
+ 
 }

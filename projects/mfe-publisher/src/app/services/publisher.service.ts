@@ -15,7 +15,8 @@ getPublishers(){
     if(pub){
       try{
         const parsePub: Publisher[] = JSON.parse(pub);
-        // console.log(parsePub);//for debug
+        this.publisherList.set(parsePub)
+        //  console.log(this.publisherList());//for debug
         console.log('Success in Publishers of local Storage ')
 
       }catch (error) {
@@ -26,5 +27,7 @@ getPublishers(){
       console.log('não tem pub')
     }
 }
+
+
 
 }

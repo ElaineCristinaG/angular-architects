@@ -16,39 +16,59 @@
         }
     }
     .tableP{
-        
         border: 1px solid var(--color-);
         padding: 30px;
+        
+        
         .row_header{
             background-color:var(--color-grape-1);
             padding: 8px;
             width: 100%;
             border-radius: 10px;
-            display: flex;
-            justify-content: space-around;
-            gap:10px;
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr 1fr 2fr 1fr;
             .box_cell_H label{
+                display: flex;
+                justify-content: center;
                 color: var(--color-grape-0);
+                
             }
         }
+     
         .row_body{
             background-color:var(--color-grape-0);
-            margin-top: -5px;
-            display: flex;
-            justify-content: space-around;
-            gap:10px;
+            margin-top: -6px;
             color: var(--color-grape-1);
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr 1fr 2fr 1fr;
+            width: 100%;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+             &:first-child {
+                .box_cell {
+                    border-top: none; 
+                }
+            }
             .box_cell{
-                padding: 3px;
-                .cel_header{
-                    color: var(--color-grape-0)
+                border-top: 1px solid var(--color-grape-1);
+                height: 30px;
+                :last-child{
+                    border-bottom: none;
                 }
-                
-    
-                .cel_body{
-
+                .cel_body_center{
+                    display: flex;
+                    justify-content: center;
+                   align-items: center;
                 }
-         }
+                 .cel_body_start{
+                    display: flex;
+                    justify-content: start ;
+                }
+            }
+            .box_cell:first{
+                border-top: none;
+            }
         }
    }
+
 }

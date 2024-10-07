@@ -4,7 +4,7 @@
 GET http://localhost:3000/publishers/
 ###
 
-DELETE  http://localhost:3000/publishers/6d4c 
+DELETE  http://localhost:3000/publishers/55c8 
 
 ###  //CRIA NOVO
 POST http://localhost:3000/publishers HTTP/1.1
