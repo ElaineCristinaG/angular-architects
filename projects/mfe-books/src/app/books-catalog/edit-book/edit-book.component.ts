@@ -1,10 +1,9 @@
-import { Component, effect, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, effect, signal, WritableSignal } from '@angular/core';
 import { Book } from '../../model/books';
 import { OrchestratorService } from '../../../../../shell/src/app/services/orchestrator/orchestrator.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Title } from '@angular/platform-browser';
 import { BookService } from '../../services/book.service';
-import { ServiceResponseMessages, TypeFormBook } from '../../../../../shell/src/app/models/enum';
+import { ServiceResponseMessages } from '../../../../../shell/src/app/models/enum';
 import { Observer } from 'rxjs';
 
 @Component({
@@ -51,7 +50,7 @@ export class EditBookComponent {
   private startForm(){ 
     this.clearAll(); 
     if(this.orcService.book() != this.orcService.clearBook()){
-      this.typeForm =  TypeFormBook.EDIT_FORM;
+      this.typeForm =  'Edit Book';
       this.form.patchValue({
           title:    this.book.title,
           author:   this.book.author,
@@ -62,14 +61,14 @@ export class EditBookComponent {
           language: this.book.language,
         });
     }else{
-      this.typeForm = TypeFormBook.CREATE_FORM;
+      this.typeForm = 'Create';
     }    
     
   }
 
   public onSubmit(){
     this.orcService.openModal.set(false);
-     console.log('submit')
+    
     if(this.form.valid) {
 
       const objBook: Book = {
@@ -83,8 +82,8 @@ export class EditBookComponent {
         language: this.form.get('language')?.value,
         id: this.book.id,
       } 
-      if(this.typeForm ===  TypeFormBook.EDIT_FORM){ this.editBook(objBook)}
-      if(this.typeForm === TypeFormBook.CREATE_FORM) {this.createBook (objBook)}
+      if(this.typeForm ===  'Edit Book'){ this.editBook(objBook)}
+      if(this.typeForm === 'Create') {this.createBook (objBook)}
   }
  
 }

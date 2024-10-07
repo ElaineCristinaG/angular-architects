@@ -11,8 +11,12 @@
             </div>
             
         </div>
+        @if(typeForm === 'Edit Book'){
+                    <h2 class="titleModal"id="title_form">Edit Book</h2>
+        }@else {
+            <h2 class="titleModal"id="title_form"> Creat Book</h2>
+        }
 
-        <h2 class="titleModal"id="title_form">Edit Book</h2>
 
         <form class="contentModal" [formGroup]="form" >
             <div class="input-group flex-nowrap">

@@ -1,14 +1,16 @@
 ###
 GET http://localhost:3000/profile/?email=jade@jade.com
+###
+GET http://localhost:3000/profile/
 
 ###
 POST http://localhost:3000/profile HTTP/1.1
 content-type: application/json
 
 { 
-    "email": "testet2@testet2.com",
-    "password": "6574859",
-    "name": "nome2 de teste2"
+    "email": "admin@admin.com",
+    "password": "123456",
+    "name": "Admin Silva"
 }
 
 ###

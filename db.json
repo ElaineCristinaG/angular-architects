@@ -1193,6 +1193,12 @@
       "name": "abacaxi",
       "email": "abacaxi@gmail.com",
       "password": "123456"
+    },
+    {
+      "id": "8f00",
+      "email": "admin@admin.com",
+      "password": "123456",
+      "name": "Admin Silva"
     }
   ],
   "publishers": [
