@@ -20,8 +20,20 @@ Run `npx cypress`in directory: host-app/projects/shell to execute the end-to-end
 
 ## Mock api json run:
 json-server --watch db.json
+port: http://localhost:3000
+http://localhost:3000/books
+http://localhost:3000/profile
+http://localhost:3000/publishers
+
 ## run aplication
 npm start
+port: http://localhost:4000/
+
+##Data Base
+File: db.json project base 
+## Directories Architeture
+![image](https://github.com/user-attachments/assets/5725c8e6-2253-40a5-b383-774949acc92e)
+![image](https://github.com/user-attachments/assets/688d6284-e643-4505-b3bd-54c2aaa94391)
 
 ## Description
 # Project Overview
