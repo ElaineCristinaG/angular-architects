@@ -12,7 +12,12 @@ Run `npm start` for a dev server. Navigate to `http://localhost:4000/`. The appl
 
 ## Running unit tests
 
-Run `npm test` to execute the unit tests via [Karma](https://karma-runner.github.io). Has Code coverage in:![alt text](image.png) 
+Run `npm test` to execute the unit tests via [Karma](https://karma-runner.github.io). 
+Has Code coverage in:![alt text](image.png)
+Execution in microfrontends separate : entry in directory of application
+projects/shell
+projects/mfe-books
+projects/mfe-publisher
 
 ## Running end-to-end tests
 
