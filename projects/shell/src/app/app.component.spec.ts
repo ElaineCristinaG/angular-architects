@@ -4,6 +4,9 @@ import { StorageService } from './services/storageData/storage.service';
 import { PublisherService } from './services/publisher/publisher.service';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { of } from 'rxjs';
+import { Publisher } from './models/interfaces';
+import { provideClientHydration } from '@angular/platform-browser';
 
 describe('AppComponent', () => {
  
@@ -13,11 +16,15 @@ describe('AppComponent', () => {
 
  let storageMock : StorageService;
  let publisherMock : PublisherService;
-  
+
+ let responsePublisher: Publisher = { id: 0,  name: 'str',  country:'str',  founded: 0,  website: 'str' };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule ],
+      imports: [ 
+        HttpClientTestingModule,
+      provideClientHydration(),
+     ],
       providers:[ StorageService, PublisherService],
       declarations: [
         AppComponent
@@ -44,13 +51,17 @@ describe('AppComponent', () => {
   it(`should have as title 'shell'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('shell');
+    expect(app.title).toEqual('Books & Publisher');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, shell');
+  it('should getPublishers and call service storage return data valid',()=>{
+    spyOn(storageMock,'setDataStorage');
+    spyOn(publisherMock,'getAll').and.returnValue(of([responsePublisher]));
+    component.getPublishers();
+    expect(component.publishers()).toBe([responsePublisher]);
+
   });
+
+
+
 });

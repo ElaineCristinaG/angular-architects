@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { LoginComponent } from './login.component';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
@@ -11,7 +10,7 @@ import { Profile, ProfileResponse } from '../models/interfaces';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
-fdescribe('LoginComponent', () => {
+describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
 
@@ -20,7 +19,7 @@ fdescribe('LoginComponent', () => {
   let router: Router;
   let profileService: ProfileService;
   let storageService: StorageService;
-   let fb: FormBuilder;
+  let fb: FormBuilder;
 
   let mockUsers:ProfileResponse[] = [
     { id: '1', name: 'User A',email: 'test1@test.com', password:'123456' }, 
@@ -53,13 +52,12 @@ fdescribe('LoginComponent', () => {
   beforeEach(() =>{
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
-
     orcService = TestBed.inject(OrchestratorService);
     authService = TestBed.inject(AuthService);
     router = TestBed.inject(Router);
     profileService = TestBed.inject(ProfileService);
      fb = TestBed.inject(FormBuilder);
-    spyOn(profileService,'listUser').and.returnValues(of(mockUsers));
+    
     spyOn(console, 'log'); 
     fixture.detectChanges();
   })
@@ -68,7 +66,7 @@ fdescribe('LoginComponent', () => {
     expect(component).toBeTruthy();
   });
 
-   it('should load users successfully', () => {
+  it('should load users successfully', () => {
     spyOn(profileService,'listUser').and.returnValues(of(mockUsers));
     component.ngOnInit();
     expect(component.users).toEqual(mockUsers);
@@ -94,10 +92,6 @@ fdescribe('LoginComponent', () => {
     component.onsubmitProfile(mockEvent);
     spyOn(profileService,'create').and.returnValues(of(profileMock));
     expect(profileService.create).toHaveBeenCalledTimes(1);
-  })
-
-  it('', ()=>{
-
   })
 
 });
