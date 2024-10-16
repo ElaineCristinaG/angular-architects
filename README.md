@@ -12,9 +12,9 @@ Run `npm start` for a dev server. Navigate to `http://localhost:4000/`. The appl
 
 ## Running unit tests
 
-Run `npm run test:mfe-books`      for mfe-books with code-coverage      in directory: projects/mfe-books
-Run `npm run test:mfe-publisher`  for mfe-publisher with code-coverage  in directory: projects/mfe-publisher
-Run `npm run test:shell`          for shell with code-coverage          in directory: projects/shell
+Run `npm run test:mfe-books` for mfe-books with code-coverage  in directory: projects/mfe-books
+Run `npm run test:mfe-publisher` for mfe-publisher with code-coverage  in directory: projects/mfe-publisher
+Run `npm run test:shell` for shell with code-coverage  in directory: projects/shell
 
 ## Visualization code coverage
 
