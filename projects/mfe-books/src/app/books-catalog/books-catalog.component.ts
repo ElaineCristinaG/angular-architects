@@ -78,12 +78,13 @@ export class BooksCatalogComponent {
   }
 
   public deleteBook(event: Book){
+    console.log('delte')
 
     const bookObserver : Observer<any> = {
       next: () => {
          this.booksList.set(this.booksList().filter(book => book.id !== event.id));
          console.log('Book deleted Success');
-         this.orcService.messageFeed.set('Book deleted Success');
+        //  this.orcService.messageFeed.set('Book deleted Success');
          this.orcService.reload();
       },
       error: (error) => {
