@@ -15,7 +15,6 @@ export class AuthGuardService implements CanActivate {
       return true;
     } else {
       this.router.navigate(['']);
-      // console.log('não tem autenticação');
       return false;
     }
   }

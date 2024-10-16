@@ -10,13 +10,12 @@ public publisherList: WritableSignal<Publisher[]> = signal([]);
 
 
 getPublishers(){
- console.log('service pub')
+ 
     const pub = localStorage.getItem('publishers_shell');
     if(pub){
       try{
         const parsePub: Publisher[] = JSON.parse(pub);
         this.publisherList.set(parsePub)
-        //  console.log(this.publisherList());//for debug
         console.log('Success in Publishers of local Storage ')
 
       }catch (error) {
@@ -24,7 +23,7 @@ getPublishers(){
       }
 
     }else{
-      console.log('não tem pub')
+      console.log('não tem pub');
     }
 }
 

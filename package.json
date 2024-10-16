@@ -9,7 +9,9 @@
     "start": "ng serve shell",
     "build": "ng build shell",
     "watch": "ng build shell --watch --configuration development",
-    "test": "ng test --code-coverage",
+    "test:shell": "ng test shell --code-coverage",
+    "test:mfe-books": "ng test mfe-books --code-coverage",
+    "test:mfe-publisher": "ng test mfe-publisher --code-coverage",
     "run:all": "node node_modules/@angular-architects/module-federation/src/server/mf-dev-server.js",
     "build:prod": "ng build shell --configuration production",
     "build:dev": "ng build shell --configuration development"

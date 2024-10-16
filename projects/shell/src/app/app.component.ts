@@ -25,9 +25,9 @@ export class AppComponent implements OnInit{
    
     const obs: Observer<any> = {
       next: (data) => {
-       
+        // console.log(data)
           this.publishers.set(data);
-          //  console.log(this.publishers()) //for debug
+           console.log(this.publishers()) //for debug
           this.storageService.setDataStorage('publishers_shell',data)
       },
       error: (error) => {
@@ -39,7 +39,7 @@ export class AppComponent implements OnInit{
         console.log('Data Publishers in LocalStorage, key: publishers_shell');
       }
     }
-    this.publisherService.getAll().subscribe(obs);
+    this.publisherService.getAll().subscribe();
    
     
   }

@@ -67,14 +67,14 @@
       "id": "9329"
     },
     {
-      "author": "Honoré de Balzac",
-      "country": "France",
-      "imageLink": "assets/images/image-book-catalog/le-pere-goriot.jpg",
-      "language": "French",
-      "link": "https://en.wikipedia.org/wiki/Le_P%C3%A8re_Goriot\n",
-      "pages": 443,
       "title": "Le Père Goriot",
+      "author": "Honoré de Balzac",
+      "link": "https://en.wikipedia.org/wiki/Le_P%C3%A8re_Goriot\n",
+      "imageLink": "assets/images/image-book-catalog/le-pere-goriot.jpg",
+      "country": "France",
+      "pages": "443",
       "year": 1835,
+      "language": "French",
       "id": "45fc"
     },
     {

@@ -115,25 +115,20 @@ export class LoginComponent implements OnInit{
   public onSubmitLogin(){
     const email = this.formLogin.get('emailUser')?.value;
     const pass = this.formLogin.get('passw')?.value;
-    // console.log(email, email)
     this.profileService.getByEmail(email).subscribe(profile => {
-      // console.log(profile)
       if(profile.length > 0){
         
         if (profile[0].email === email && profile[0].password === pass) {
           
-          // this.storageService.setDataStorage('user_shell',profile)
           localStorage.setItem('user', JSON.stringify(profile[0]));
-           
-  
           this.router.navigate(['booksCatalog']);
-        }else{ console.log("email ou senha inválido")} 
-      }else{
-      console.log('User not existing');  
+        }else{ console.log("email ou senha inválido")
+
+        } 
+      }else{ console.log('User not existing');  
       }
 
     })
-    
     
   }
 
