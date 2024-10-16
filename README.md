@@ -12,7 +12,15 @@ Run `npm start` for a dev server. Navigate to `http://localhost:4000/`. The appl
 
 ## Running unit tests
 
-Run `npm test` to execute the unit tests via [Karma](https://karma-runner.github.io). Has Code coverage in:![alt text](image.png) 
+Run `npm run test:mfe-books`      for mfe-books with code-coverage      in directory: projects/mfe-books
+Run `npm run test:mfe-publisher`  for mfe-publisher with code-coverage  in directory: projects/mfe-publisher
+Run `npm run test:shell`          for shell with code-coverage          in directory: projects/shell
+
+## Visualization code coverage
+
+open folder "coverage", click right button on the file index.html of the chosen microfrontend . Choice "Open with Live Server"
+Open in browser exemple mfe-books:
+![alt text](image-1.png)
 
 ## Running end-to-end tests
 
