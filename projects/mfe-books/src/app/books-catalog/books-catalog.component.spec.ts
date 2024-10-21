@@ -95,10 +95,49 @@ let bookListMock = [
     expect(window.scrollTo).toHaveBeenCalled();
 
   })
+
   it ('should be called editBook and set orcServiceMock book / openModal',() => {
     component.editBook(bookMock);
     expect(orcServiceMock.book()).toEqual(bookMock);
     expect(orcServiceMock.openModal()).toBeTrue();
-    
   })
+
+  it ('should be called createBook and set orcServiceMock.openModal true',() => {
+    component.createBook();
+    expect(orcServiceMock.openModal()).toBeTrue();
+  })
+
+  it('should be editBook  then orcServiceMock.book sould be seting with book ',() => {
+    component.editBook(bookMock);
+    expect(orcServiceMock.book()).toEqual(bookMock);
+    expect(orcServiceMock.openModal()).toBeTrue();
+  })
+
+  it('should filtered card list with word in', () => {
+    component.booksFiltered.set(bookListMock);
+    component.booksList.set(bookListMock);
+    const result = [{
+    "author": "Livro Teste4",
+    "country": "Teste4",
+    "imageLink": "Teste4",
+    "language": "teste",
+    "link": "https://en.wikipedia.org/wiki/Things_Fall_Apart",
+    "pages": 123,
+    "title": "Teste",
+    "year": 3000,
+    "id": "12"
+}]
+    
+    const eventWord = new Event('input');
+    Object.defineProperty(eventWord, 'target', {
+      value:{value:'teste4'},
+    });
+    
+    component.filter(eventWord);
+    expect(component.booksList()).toEqual(result);
+
+  })
+
+  
+
 });

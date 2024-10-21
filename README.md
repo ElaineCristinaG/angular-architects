@@ -1,6 +1,7 @@
 # Version
 
 Angular: 18.0.6
+Module Federation: 18.0.6
 cypress: 13.15.0
 bootstrap: 5.3.3
 karma: 6.4.0
@@ -9,6 +10,12 @@ karma-jasmine: 5.1.0
 ## Development server
 
 Run `npm start` for a dev server. Navigate to `http://localhost:4000/`. The application will automatically reload if you change any of the source files. Represents aplication Shell
+## Mock api json run:
+json-server --watch db.json.
+Endpoints:
+http://localhost:3000/books
+http://localhost:3000/profile
+http://localhost:3000/publishers
 
 ## Running unit tests
 
@@ -18,7 +25,7 @@ Run `npm run test:shell` for shell with code-coverage  in directory: projects/sh
 
 ## Visualization code coverage
 
-open folder "coverage", click right button on the file index.html of the chosen microfrontend . Choice "Open with Live Server"
+open folder "coverage", click right button on the file index.html of the chosen microfrontend . Choice "Open with Live Server"\
 Open in browser exemple mfe-books:
 ![alt text](image-1.png)
 
@@ -32,12 +39,6 @@ projects/mfe-publisher
 
 Run `npx cypress`in directory: host-app/projects/shell to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Mock api json run:
-json-server --watch db.json
-port: http://localhost:3000
-http://localhost:3000/books
-http://localhost:3000/profile
-http://localhost:3000/publishers
 
 ## run aplication
 npm start
@@ -45,6 +46,7 @@ port: http://localhost:4000/
 
 ## Data Base
 File: db.json project base 
+
 ## Directories Architeture
 ![image](https://github.com/user-attachments/assets/5725c8e6-2253-40a5-b383-774949acc92e)
 ![image](https://github.com/user-attachments/assets/688d6284-e643-4505-b3bd-54c2aaa94391)
@@ -54,7 +56,7 @@ File: db.json project base
 
 This project was created using **Angular version 18** and follows a **Microfrontend architecture** utilizing **Module Federation** and **Webpack**. The architecture consists of three microfrontends:
 
-- **Shell**: Acts as the orchestrator for the other two microfrontends. To log in, use the credentials:
+- **Shell**: Acts as the orchestrator for the other two microfrontends. To login, use the credentials:
   - **Username**: admin@admin.com
   - **Password**: 123456
 
