@@ -11,16 +11,16 @@
             <button type="button" class="btn btn-success" (click)="createBook()">New Book</button>
         </div> 
        
-                <!-- <form class="d-flex justify-content-end placeholder  bg-transparent" role="search">
-                    <input class="form-control me-2 border-success " type="search" placeholder="Search" aria-label="Search" >
-                    <button class="btn btn-outline-success" type="submit"(click)="filter($event)">Search</button>
-                </form>  -->
+        <form class="d-flex justify-content-end placeholder  bg-transparent" role="search">
+            <input class="form-control me-2 border-success " type="search" placeholder="Search" aria-label="Search" (input)="filter($event)" >
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form> 
            
 
    
     <section id="listBooks" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; padding-left:2.5%">
 
-    @for( book of booksFiltered(); track book.id; let idx = $index, e = $even ){
+    @for( book of booksList(); track book.id; let idx = $index, e = $even ){
     <div class="card pb-0 " style="width: 18rem; margin: 20px;"  >
         <div style="height: 65%; width: auto;display: flex; justify-content: center;">
             <img [src]="book.imageLink" class="card-img-top" alt="image cover of the book"style="height: auto; width:100%;">

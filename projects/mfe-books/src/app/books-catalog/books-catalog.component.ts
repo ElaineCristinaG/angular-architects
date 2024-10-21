@@ -40,6 +40,7 @@ export class BooksCatalogComponent {
     }
 
   startBooksCatalog(){
+   
     this.orcService.openModal.set(false);
     this.orcService.openfeedback.set(false);
     let user = localStorage.getItem('user');
@@ -107,14 +108,16 @@ export class BooksCatalogComponent {
   }
 
   public filter(event: any){
-    console.log('filtrar')
-    const searchTerm = event.target.value.toLowerCase();
+    const inputValue = event.target.value || ''; 
+    const searchTerm = inputValue.toLowerCase();
     this.booksList.set(this.booksFiltered()
     .filter(
-      card => card.title.toLowerCase().includes(searchTerm) || card.author.toLowerCase().includes(searchTerm)
+      book => book.title.toLowerCase().includes(searchTerm) 
+      || book.author.toLowerCase().includes(searchTerm)
     ))
-    
+    console.log(this.booksList)
   }
+
   public scrollToTop(): void {
     window.scrollTo({
       top: 0,
