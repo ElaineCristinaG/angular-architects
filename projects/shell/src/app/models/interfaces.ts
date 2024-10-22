@@ -7,12 +7,14 @@ export interface Profile {
     name: string
     email: string
     password: string,
+    admin: 0 | 1,
 }
 export interface ProfileResponse {
     name: string
     email: string
     password: string
     id: string
+    admin: 0|1
 }
 
 export interface Publisher {

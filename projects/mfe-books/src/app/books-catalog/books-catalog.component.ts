@@ -5,6 +5,7 @@ import { OrchestratorService } from '../../../../shell/src/app/services/orchestr
 import { Profile } from '../../../../shell/src/app/models/interfaces';
 import { Observer } from 'rxjs';
 import { ServiceResponseMessages } from '../../../../shell/src/app/models/enum';
+import { is } from 'cypress/types/bluebird';
 
 @Component({
   selector: 'app-books-catalog',
@@ -28,29 +29,36 @@ export class BooksCatalogComponent {
 
   public booksList: WritableSignal<Book[]> = signal([]);
   public booksFiltered: WritableSignal<Book[]> = signal([]);
-  public booksReserved: Book[] = []; 
+  public booksReserved: Book[] = [];
+  public isBlocked = false; 
+  public profile: Profile = { name: ' ',email: ' ', password:' ', admin: 0}
 
   constructor(
     private bookService: BookService,
     public orcService: OrchestratorService,
   ){ 
       this.getBooks();
-      this.startBooksCatalog()
-    
+      this.startBooksCatalog();
     }
 
   startBooksCatalog(){
    
     this.orcService.openModal.set(false);
     this.orcService.openfeedback.set(false);
+
     let user = localStorage.getItem('user');
         if(user)
         try{
           const parseUser = JSON.parse(user);
-          let profile: Profile  = {
-            name: parseUser.name, email: parseUser.email, password: parseUser.password
+          this.profile = {
+            name: parseUser.name, 
+            email: parseUser.email, 
+            password: parseUser.password, 
+            admin: parseUser.admin
           }
-          this.orcService.user.set(profile);
+          this.isBlocked = this.profile.admin === 1 ? false : true;
+          console.log(this.isBlocked, this.profile.admin)
+          this.orcService.user.set(this.profile);
           console.log(this.orcService.user())
       }catch (error) {
         console.error('Erro ao parsear o JSON do localStorage:', error);
@@ -74,8 +82,8 @@ export class BooksCatalogComponent {
     this.orcService.openModal.set(true);
   }
 
-  public deleteBook(event: Book){
-    console.log('delte')
+  public deleteBook_(event: Book){
+    alert(`Are you sure you want to delete book ${event.title} ?`)
 
     const bookObserver : Observer<any> = {
       next: () => {
@@ -97,6 +105,26 @@ export class BooksCatalogComponent {
     }
     this.bookService.delete(event.id).subscribe(bookObserver);
   }
+
+  public deleteBook(event: Book) {
+  if (confirm(`Are you sure you want to delete the book "${event.title}"?`)) {
+    this.bookService.delete(event.id).subscribe({
+      next: () => {
+        this.booksList.set(this.booksList().filter(book => book.id !== event.id));
+        alert('Book deleted successfully');
+        // this.orcService.messageFeed.set('Book deleted successfully');
+        // this.orcService.reload();
+      },
+      error: () => {
+        this.orcService.messageFeed.set(ServiceResponseMessages.ERROR);
+      },
+      complete: () => {
+        console.log('Request completed.');
+      }
+    });
+  }
+}
+
 
   public booking(book: Book){
     this.booksReserved.push(book);

@@ -12,17 +12,6 @@
       "id": "3846"
     },
     {
-      "title": "The Epic Of Gilgamesh",
-      "author": "Unknown",
-      "link": "https://en.wikipedia.org/wiki/Epic_of_Gilgamesh\n",
-      "imageLink": "assets/images/image-book-catalog/the-epic-of-gilgamesh.jpg",
-      "country": "Sumer and Akkadian Empire",
-      "pages": 160,
-      "year": -1700,
-      "language": "Akkadian",
-      "id": "2976"
-    },
-    {
       "author": "Unknown",
       "country": "Achaemenid Empire",
       "imageLink": "assets/images/image-book-catalog/the-book-of-job.jpg",
@@ -1077,128 +1066,33 @@
       "pages": 209,
       "title": "Things Fall Apart",
       "year": 1958
+    },
+    {
+      "id": "9999999",
+      "author": "Livro Teste3",
+      "country": "Teste3",
+      "imageLink": "Teste3",
+      "language": "teste",
+      "link": "https://en.wikipedia.org/wiki/Things_Fall_Apart",
+      "pages": 123,
+      "title": "Teste",
+      "year": 3000
     }
   ],
   "profile": [
     {
-      "id": "1",
-      "email": "user1@example.com",
-      "password": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
-      "name": "user"
-    },
-    {
-      "id": "2",
-      "email": "user2@example.com",
-      "password": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
-      "name": "user"
-    },
-    {
-      "id": "3",
-      "email": "user3@example.com",
-      "password": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
-      "name": "user"
-    },
-    {
-      "id": "4",
-      "email": "user4@example.com",
-      "password": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
-      "name": "user"
-    },
-    {
-      "email": "alfredo@teste.com",
-      "password": "010101",
-      "name": "Alfredo",
-      "id": "7d35"
-    },
-    {
-      "id": "66c4",
-      "email": "testet@testet.com",
-      "password": "6574859",
-      "name": "nome de teste"
-    },
-    {
-      "id": "453e",
-      "name": "",
-      "email": "",
-      "password": ""
-    },
-    {
-      "id": "d47a",
-      "name": "",
-      "email": "",
-      "password": ""
-    },
-    {
-      "id": "d80f",
-      "name": "Leticia",
-      "email": "leticia@leticia.com",
-      "password": "101010"
-    },
-    {
-      "id": "68aa",
-      "name": "maria laura",
-      "email": "maria@maria.com",
-      "password": "2727"
-    },
-    {
-      "id": "672d",
-      "name": "maria laura",
-      "email": "maria@maria.com",
-      "password": "2727"
-    },
-    {
-      "id": "9f96",
-      "name": "maria laura",
-      "email": "maria@maria.com",
-      "password": "2727"
-    },
-    {
-      "id": "57f6",
-      "name": "kito susi",
-      "email": "kito@kito.com",
-      "password": "2121"
-    },
-    {
-      "id": "166d",
-      "name": "abacate",
-      "email": "abacate@gm.com",
-      "password": "aba"
-    },
-    {
-      "id": "a1c8",
-      "name": "elaine cristina",
-      "email": "elaine.cristina@elaine.com",
-      "password": "4321"
-    },
-    {
-      "id": "e210",
-      "name": "daniel carminhola",
-      "email": "testedaniel@daniel.com",
-      "password": "54321"
-    },
-    {
-      "id": "49d2",
-      "name": "jade carmo",
-      "email": "jade@jade.com",
-      "password": "jajade"
-    },
-    {
-      "id": "57a2",
-      "email": "testet2@testet2.com",
-      "password": "6574859",
-      "name": "nome2 de teste2"
-    },
-    {
-      "id": "3b4f",
-      "name": "abacaxi",
-      "email": "abacaxi@gmail.com",
-      "password": "123456"
-    },
-    {
       "id": "8f00",
       "email": "admin@admin.com",
       "password": "123456",
-      "name": "Admin Silva"
+      "name": "José Silva",
+      "admin": 0
+    },
+    {
+      "id": "a16d",
+      "name": "Elaine",
+      "email": "elaine@ecdeveloper.com",
+      "password": "123456",
+      "admin": 1
     }
   ],
   "publishers": [

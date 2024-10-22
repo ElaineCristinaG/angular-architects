@@ -22,9 +22,10 @@ describe('LoginComponent', () => {
   let fb: FormBuilder;
 
   let mockUsers:ProfileResponse[] = [
-    { id: '1', name: 'User A',email: 'test1@test.com', password:'123456' }, 
-    { id: '2', name: 'User B',email: 'test2@test.com', password:'654321' }];
-   let profileMock: Profile = { name: 'User A',email: 'test1@test.com', password:'123456' } ;
+    { id: '1', name: 'User A',email: 'test1@test.com', password:'123456' ,admin: 0}, 
+    { id: '2', name: 'User B',email: 'test2@test.com', password:'654321' ,admin: 0}
+  ];
+  let profileMock: Profile = { name: 'User A',email: 'test1@test.com', password:'123456', admin: 0} ;
 
   let mockEvent: Event = {  type: 'click' } as Event; 
 

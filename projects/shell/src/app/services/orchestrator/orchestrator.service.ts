@@ -12,7 +12,7 @@ export class OrchestratorService {
   public openModal = signal(false);
   public openfeedback = signal(false);
   public messageFeed = signal('');
-  public user:WritableSignal<Profile> = signal({ email: '',name: '',password: '' });
+  public user:WritableSignal<Profile> = signal({ email: '',name: '',password: '',admin: 0 });
 
   public book: WritableSignal<Book> = signal( this.clearBook() ) 
 
@@ -27,11 +27,11 @@ export class OrchestratorService {
   }
 
   public clearProfile(): Profile{
-    return { email: '',name: '',password: '' }
+    return { email: '',name: '',password: '' , admin: 0}
   }
 
   public inicializePublisher():Publisher{
-    return { id: 0,name:'', country: '',founded: 0,website:'' }
+    return { id: 0,name:'', country: '',founded: 0, website:'' }
   }
 
 }

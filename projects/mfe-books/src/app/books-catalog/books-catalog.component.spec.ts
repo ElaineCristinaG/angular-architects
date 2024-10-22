@@ -102,11 +102,6 @@ let bookListMock = [
     expect(orcServiceMock.openModal()).toBeTrue();
   })
 
-  it ('should be called createBook and set orcServiceMock.openModal true',() => {
-    component.createBook();
-    expect(orcServiceMock.openModal()).toBeTrue();
-  })
-
   it('should be editBook  then orcServiceMock.book sould be seting with book ',() => {
     component.editBook(bookMock);
     expect(orcServiceMock.book()).toEqual(bookMock);

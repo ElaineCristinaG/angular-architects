@@ -96,6 +96,7 @@ export class LoginComponent implements OnInit{
         name: this.formProfile.controls['name'].value,
         email:this.formProfile.controls['email'].value,
         password:this.formProfile.controls['pass'].value,
+        admin: 0,
       }
 
     this.profileService.create(profile).subscribe(
@@ -125,7 +126,8 @@ export class LoginComponent implements OnInit{
         }else{ console.log("email ou senha inválido")
 
         } 
-      }else{ console.log('User not existing');  
+      }else{ 
+        alert('User not existing');  
       }
 
     })
