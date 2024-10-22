@@ -6,16 +6,14 @@
     
     
 
-        <div class="d-flex justify-content-lg-between placeholder w-100 bg-transparent"style="padding-left: 4%;padding-right:3%">
-            <h2 class="text-success " >Book display</h2>
-            <button type="button" class="btn btn-success" (click)="createBook()">New Book</button>
-        </div> 
-       
-        <form class="d-flex justify-content-end placeholder  bg-transparent" role="search">
-            <input class="form-control me-2 border-success " type="search" placeholder="Search" aria-label="Search" (input)="filter($event)" >
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form> 
-           
+        <div class="d-flex justify-content-lg-between  bg-transparent"style="padding-left: 4%;padding-right:3%">
+            <h2 class="text-success"> Book display </h2>
+            <form class="d-flex justify-content-end   bg-transparent" role="search">
+                <input class="form-control me-2 border-success " type="search" placeholder="Search" aria-label="Search" (input)="filter($event)" >
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form> 
+            <button type="button" class="btn btn-success" (click)="this.orcService.openModal.set(true)">New Book</button>
+        </div>  
 
    
     <section id="listBooks" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; padding-left:2.5%">

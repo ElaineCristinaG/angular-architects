@@ -69,10 +69,6 @@ export class BooksCatalogComponent {
     })
   }
 
-  public createBook(){
-   this.orcService.openModal.set(true);
-  }
-
   public editBook(book: Book){
     this.orcService.book.set(book);
     this.orcService.openModal.set(true);
