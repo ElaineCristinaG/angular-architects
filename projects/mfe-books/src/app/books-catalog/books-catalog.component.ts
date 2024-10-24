@@ -82,29 +82,6 @@ export class BooksCatalogComponent {
     this.orcService.openModal.set(true);
   }
 
-  public deleteBook_(event: Book){
-    alert(`Are you sure you want to delete book ${event.title} ?`)
-
-    const bookObserver : Observer<any> = {
-      next: () => {
-         this.booksList.set(this.booksList().filter(book => book.id !== event.id));
-         console.log('Book deleted Success');
-        //  this.orcService.messageFeed.set('Book deleted Success');
-         this.orcService.reload();
-      },
-      error: (error) => {
-        if (error.error && error.error.message) {
-          this.orcService.messageFeed.set(ServiceResponseMessages.ERROR)
-        } else {
-          this.orcService.messageFeed.set(ServiceResponseMessages.ERROR)
-        }
-      },
-      complete: () => {
-        console.log('Request completed.');
-      }
-    }
-    this.bookService.delete(event.id).subscribe(bookObserver);
-  }
 
   public deleteBook(event: Book) {
   if (confirm(`Are you sure you want to delete the book "${event.title}"?`)) {
@@ -113,7 +90,6 @@ export class BooksCatalogComponent {
         this.booksList.set(this.booksList().filter(book => book.id !== event.id));
         alert('Book deleted successfully');
         // this.orcService.messageFeed.set('Book deleted successfully');
-        // this.orcService.reload();
       },
       error: () => {
         this.orcService.messageFeed.set(ServiceResponseMessages.ERROR);
