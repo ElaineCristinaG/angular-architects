@@ -148,3 +148,17 @@
 p{
     margin:0
 }
+
+.register_success{
+   
+    border-radius: 10px;
+    width: 300px;
+    height: 100px;
+    border: 1px solid var(--color-green-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    p{
+        color: var(--color-green-2);
+    }
+}
