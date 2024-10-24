@@ -24,4 +24,8 @@ export interface Publisher {
   founded: number;
   website: string;
 }
+ export interface Credentials{
+    email: string;
+    pass: string;
+ }
 

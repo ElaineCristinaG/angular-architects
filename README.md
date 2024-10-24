@@ -7,15 +7,25 @@ bootstrap: 5.3.3
 karma: 6.4.0
 karma-jasmine: 5.1.0
 
-## Development server
+## run aplication
 
-Run `npm start` for a dev server. Navigate to `http://localhost:4000/`. The application will automatically reload if you change any of the source files. Represents aplication Shell
+npm start
+port: http://localhost:4000/
+
 ## Mock api json run:
+
 json-server --watch db.json.
 Endpoints:
 http://localhost:3000/books
 http://localhost:3000/profile
 http://localhost:3000/publishers
+
+## Login
+
+email: admin@admin.com
+pass: 123456
+
+or click "Register" and create yours
 
 ## Running unit tests
 
@@ -40,11 +50,8 @@ projects/mfe-publisher
 Run `npx cypress`in directory: host-app/projects/shell to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
 
-## run aplication
-npm start
-port: http://localhost:4000/
-
 ## Data Base
+
 File: db.json project base 
 
 ## Directories Architeture

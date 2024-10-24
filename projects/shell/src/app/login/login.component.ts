@@ -1,11 +1,12 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { OrchestratorService } from '../services/orchestrator/orchestrator.service';
 import { AuthService } from '../services/auth/auth.service';
-import { Profile } from '../models/interfaces';
+import { Credentials, Profile } from '../models/interfaces';
 import { Router } from '@angular/router';
 import { ProfileService } from '../services/profile/profile.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StorageService } from '../services/storageData/storage.service';
+import { map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,10 @@ export class LoginComponent implements OnInit{
 
   public users: Profile[] = [];
   
-  loginFailed: boolean = false;
+  public emailFailed: boolean = false;
+  public passFailed: boolean = false;
+  public registerFailed: boolean = false;
+  public msgAlert = signal('');
 
   public formLogin: FormGroup;
   public formProfile: FormGroup;
@@ -37,103 +41,125 @@ export class LoginComponent implements OnInit{
   })
 
   this.formProfile = fb.group({
-    name: ['',[Validators.required]],
-    email: ['',[Validators.required]],
-    pass: ['',[Validators.required]],
-    passRepit: ['',[Validators.required]],
-  })
-  }
+    name: ['',[Validators.required, Validators.minLength(3)]],
+    email: ['',[Validators.required,Validators.email]],
+    pass: ['',[Validators.required, Validators.minLength(6)]],
+    passRepit: ['',[Validators.required,Validators.minLength(6)]],
+  },
   
-  ngOnInit(){
-    this.profileService.listUser().subscribe( (data: Profile[]) =>
-      
-    { if(data.length > 0){
-      this.users = data
-    }if(data.length === 0){
-      console.log(' user list empty')
+)}
+  
+  ngOnInit(){  }
+
+  /**
+   * Verify email and pass in DB
+   * Set user in LocalStorage
+   *  navigate for Books List
+   */
+  public onSubmitLogin(){
+    
+    if(this.formLogin.valid){
+        let user = this.getFormValue();
+        this.profileService.getByEmail(user.email).subscribe(profile => {
+          if(profile.length > 0){
+            
+            if (profile[0].email === user.email && profile[0].password === user.pass) {
+              
+              localStorage.setItem('user', JSON.stringify(profile[0]));
+              this.router.navigate(['booksCatalog']);
+
+            }else{ 
+                this.msgAlert.set("email ou senha inválido")
+
+            } 
+          }else{ 
+             this.msgAlert.set('Usuário não cadastrado');  
+        }
+
+      })
+    }else{
+      this.msgAlert.set( 'email ou senha não foram preenchidos')
     }
-      
-    },error => {
-      console.log('data call error')
-    });
+    
   }
-
-//   public onSubmit_(event: Event): void{
-
-//     event.preventDefault();
-//     event.defaultPrevented;
-//     const user: User = {
-//         authUser: this.username,
-//         authPass: this.password
-//     };
-
-//     this.authService.login(user).subscribe(
-      
-//       (response) => {
-//         if(response){
-//           this.router.navigate(['booksCatalog'])
-//           console.log('Autorizado')
-//         }
-//       },
-//     //   (error) => {
-//     //     console.log('Não Autorizado:',error);
-//     //     this.loginFailed = true;      
-//     // }
-//   )
-// }
-
 
   public onsubmitProfile(event: Event){
-    // event.preventDefault();
-    
-    console.log('submeter profile',this.formProfile.value)
     const validPass = this.validatePass(
       this.formProfile.controls['pass'].value, 
       this.formProfile.controls['passRepit'].value);
-    if(this.formProfile.valid && validPass){
+    const email = this.formProfile.controls['email'].value;
 
+    let validEmail = false;
+    this.profileService.getByEmail(email).subscribe((profile => {
+      if(profile[0].email != email){
+        validEmail = true;
+      }else{
+        this.msgAlert.set('Email já cadastrado');
+      }
+    }))  
+
+    if(this.formProfile.valid && validPass && validEmail ){
       let profile: Profile = {
         name: this.formProfile.controls['name'].value,
-        email:this.formProfile.controls['email'].value,
-        password:this.formProfile.controls['pass'].value,
+        email: this.formProfile.controls['email'].value,
+        password: this.formProfile.controls['pass'].value,
         admin: 0,
       }
 
     this.profileService.create(profile).subscribe(
     (resp) => { 
       console.log('User created sussess',resp) ;
-      this.router.navigate(['/'])
+      this.closeRegister();
     })
     this.orcService.formRegister.set(true);
+    }else{
+      if(!validPass){
+        this.passFailed = true;
+        this.msgAlert.set('As senhas não correspondem')
+      }
     }
-
   }
-   
+
+  public passwordsMatchValidator() {
+  const password = this.formProfile.get('pass');
+  const confirmPassword = this.formProfile.get('passRepit');
+  return password && confirmPassword && password.value !== confirmPassword.value ? { passwordsMismatch: true } : null;
+  }
+
   private validatePass(pass1: string, pass2: string): boolean{
-   return pass1 === pass2 ? true : false
+    return pass1 === pass2 ? true : false
   }
 
-  public onSubmitLogin(){
+
+  private getFormValue():Credentials{
     const email = this.formLogin.get('emailUser')?.value;
     const pass = this.formLogin.get('passw')?.value;
-    this.profileService.getByEmail(email).subscribe(profile => {
-      if(profile.length > 0){
-        
-        if (profile[0].email === email && profile[0].password === pass) {
-          
-          localStorage.setItem('user', JSON.stringify(profile[0]));
-          this.router.navigate(['booksCatalog']);
-        }else{ console.log("email ou senha inválido")
-
-        } 
-      }else{ 
-        alert('User not existing');  
-      }
-
-    })
-    
+    return {email: email, pass: pass}
   }
 
+  private cleanForm(){
+    this.formProfile.controls['name'].setValue('');
+    this.formProfile.controls['email'].setValue('');
+    this.formProfile.controls['pass'].setValue('');
+    this.formProfile.controls['passRepit'].setValue('');
+    this.formLogin.controls['emailUser'].setValue('');
+    this.formLogin.controls['passw'].setValue('');
+    this.msgAlert.set('');
+  }
+
+  public openModalRegister(){
+    this.orcService.formRegister.set(true);
+    this.cleanForm();
+  }
+
+  public closeRegister(){
+    this.orcService.formRegister.set(false);
+    this.msgAlert.set('');
+    this.formProfile.markAsUntouched();
+    this.formLogin.markAsUntouched();
+  }
+
+  //future implements
   public listUser(){
     let listUser: any = []
     this.profileService.listUser().subscribe( (data: Profile[]) =>
@@ -143,7 +169,7 @@ export class LoginComponent implements OnInit{
     }
     )
   }
-
+  //future implements
   public deletUser(id: string){
     this.profileService.delete(id).subscribe((resp: any) => 
     {
@@ -153,7 +179,7 @@ export class LoginComponent implements OnInit{
   
   )
   }
-
+ //future implements
   public updateUser(obj: Profile, id:string){
     this.profileService.update(obj,id).subscribe((resp: any) =>
     {
@@ -163,27 +189,6 @@ export class LoginComponent implements OnInit{
         console.log('error')
       }
     })
-  }
-
-  public startProfile(){
-    this.orcService.formRegister.set(true);
-    this.cleanForm(1);
-    
-  }
-
-  private cleanForm(v: number){
-    
-    if(v === 1){
-      this.formProfile.controls['name'].setValue('');
-      this.formProfile.controls['email'].setValue('');
-      this.formProfile.controls['pass'].setValue('');
-      this.formProfile.controls['passRepit'].setValue('');
-    }
-    if(v === 2){
-      this.formLogin.controls['emailUser'].setValue('');
-      this.formLogin.controls['passw'].setValue('');
-    }
-    
   }
 
 
