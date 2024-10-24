@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ProfileService } from '../services/profile/profile.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StorageService } from '../services/storageData/storage.service';
+import { map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -56,9 +57,8 @@ export class LoginComponent implements OnInit{
    *  navigate for Books List
    */
   public onSubmitLogin(){
-    console.log('submiteu')
+    
     if(this.formLogin.valid){
-      
         let user = this.getFormValue();
         this.profileService.getByEmail(user.email).subscribe(profile => {
           if(profile.length > 0){
@@ -84,19 +84,28 @@ export class LoginComponent implements OnInit{
   }
 
   public onsubmitProfile(event: Event){
-    console.log('submeter profile',this.formProfile)
-
     const validPass = this.validatePass(
       this.formProfile.controls['pass'].value, 
       this.formProfile.controls['passRepit'].value);
-      
-    if(this.formProfile.valid && validPass){
+    const email = this.formProfile.controls['email'].value;
+
+    let validEmail = false;
+    this.profileService.getByEmail(email).subscribe((profile => {
+      if(profile[0].email != email){
+        validEmail = true;
+      }else{
+        this.msgAlert.set('Email já cadastrado');
+      }
+    }))  
+
+    if(this.formProfile.valid && validPass && validEmail ){
       let profile: Profile = {
         name: this.formProfile.controls['name'].value,
-        email:this.formProfile.controls['email'].value,
-        password:this.formProfile.controls['pass'].value,
+        email: this.formProfile.controls['email'].value,
+        password: this.formProfile.controls['pass'].value,
         admin: 0,
       }
+
     this.profileService.create(profile).subscribe(
     (resp) => { 
       console.log('User created sussess',resp) ;
@@ -115,16 +124,12 @@ export class LoginComponent implements OnInit{
   const password = this.formProfile.get('pass');
   const confirmPassword = this.formProfile.get('passRepit');
   return password && confirmPassword && password.value !== confirmPassword.value ? { passwordsMismatch: true } : null;
-}
+  }
 
   private validatePass(pass1: string, pass2: string): boolean{
     return pass1 === pass2 ? true : false
   }
 
-   private templateReset(){
- 
-  
-   }
 
   private getFormValue():Credentials{
     const email = this.formLogin.get('emailUser')?.value;
@@ -133,17 +138,13 @@ export class LoginComponent implements OnInit{
   }
 
   private cleanForm(){
-  
-      this.formProfile.controls['name'].setValue('');
-      this.formProfile.controls['email'].setValue('');
-      this.formProfile.controls['pass'].setValue('');
-      this.formProfile.controls['passRepit'].setValue('');
-      this.formLogin.controls['emailUser'].setValue('');
-      this.formLogin.controls['passw'].setValue('');
-      this.msgAlert.set('');
-      this.templateReset();
-
-
+    this.formProfile.controls['name'].setValue('');
+    this.formProfile.controls['email'].setValue('');
+    this.formProfile.controls['pass'].setValue('');
+    this.formProfile.controls['passRepit'].setValue('');
+    this.formLogin.controls['emailUser'].setValue('');
+    this.formLogin.controls['passw'].setValue('');
+    this.msgAlert.set('');
   }
 
   public openModalRegister(){
