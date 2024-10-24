@@ -1,18 +1,17 @@
 
 <section class="container_login"id="login" >
+    
    
-
-
         <div class="box_login" >
-
             <div class="box_title">
-                @if(!orcService.formRegister()){
+                @if(!orcService.formRegister() || orcService.openSuccessRegister()){
                     <img src="assets/images/image-book/books_library_1768.png" alt=""> 
                 }
-                @else{ <h2 class="titleModalRegister" id="titleModalRegister">Register Now</h2> }
-                     
+                @else{ 
+                    <h2 class="titleModalRegister" id="titleModalRegister">Register Now</h2> 
+                }
+                    
             </div>
-
             @if(!orcService.formRegister()){
                 
             <form class="box_form" [formGroup]="formLogin"  >
@@ -25,8 +24,8 @@
                     <div class="box_icon_login"><img src="assets/images/icons/pass_login.svg" alt="icon password"></div>
                     <input  id="password"  formControlName="passw" type="password" placeholder="Enter your password" >
                 </div>
-                   @if(msgAlert() != ''){
-                         <div class="msgAlert"> {{msgAlert()}} </div>
+                @if(msgAlert() != ''){
+                        <div class="msgAlert"> {{msgAlert()}} </div>
                     }
                 <div class="box_btn">
                     <button class="butt btn_close" id="registerBtn" (click)="openModalRegister()">Register</button> 
@@ -35,40 +34,48 @@
             </form>
             }
             @else{
-                <form class="box_form"[formGroup]="formProfile" >
-                    <div class="box_inputs ">
-                        <div class="labelForm"><p for="name"> Name</p></div>
-                        <input  class="inputRegister" id="name"  formControlName="name" type="text" placeholder="" >
-                    </div>
-                    
-                    <div class="box_inputs ">
-                        <div class="labelForm"><p for="email"> Email</p></div>
-                        <input  class="inputRegister"  id="email" formControlName="email"  type="email" placeholder="" >
-                    </div>
+                @if(!orcService.openSuccessRegister()){
 
-                    <div class="box_inputs inputRegister">
-                        <div class="labelForm"><p for="pass"> Password</p></div>
-                        <input  class="inputRegisterPass"  id="pass" formControlName="pass"  type="password" placeholder="">
-                    </div>
-
-                    <div class="box_inputs ">
-                        <div class="labelForm"><p for="passRepit"> Confirm</p></div>
-                        <input  class="inputRegisterPass"  id="passRepit" formControlName="passRepit" type="password" placeholder="" 
-                        [ngClass]="{ 'error':  passFailed}">
-                    </div>
-                     @if(msgAlert() != ''){
-                         <div class="msgAlert"> {{msgAlert()}} </div>
-                    }
-                    <div class="box_btn">
-                        <button class="butt btn_close" id="closeRegisterBtn" (click)="closeRegister()">Close</button>
-                        <button class="butt btn_submit" id="saveRegisterBtn" type="submit" [disabled]="!formProfile.valid"(click)="onsubmitProfile($event)">Save</button>
-                    </div>
-                    
-                </form>
+                    <form class="box_form"[formGroup]="formProfile" >
+                        <div class="box_inputs ">
+                            <div class="labelForm"><p for="name"> Name</p></div>
+                            <input  class="inputRegister" id="name"  formControlName="name" type="text" placeholder="" >
+                        </div>
+                        
+                        <div class="box_inputs ">
+                            <div class="labelForm"><p for="email"> Email</p></div>
+                            <input  class="inputRegister"  id="email" formControlName="email"  type="email" placeholder="" >
+                        </div>
+                        <div class="box_inputs inputRegister">
+                            <div class="labelForm"><p for="pass"> Password</p></div>
+                            <input  class="inputRegisterPass"  id="pass" formControlName="pass"  type="password" placeholder="">
+                        </div>
+                        <div class="box_inputs ">
+                            <div class="labelForm"><p for="passRepit"> Confirm</p></div>
+                            <input  class="inputRegisterPass"  id="passRepit" formControlName="passRepit" type="password" placeholder="" 
+                            [ngClass]="{ 'error':  passFailed}">
+                        </div>
+                        @if(msgAlert() != ''){
+                            <div class="msgAlert"> {{msgAlert()}} </div>
+                        }
+                        <div class="box_btn">
+                            <button class="butt btn_close" id="closeRegisterBtn" (click)="closeRegister()">Close</button>
+                            <button class="butt btn_submit" id="saveRegisterBtn" type="submit" [disabled]="!formProfile.valid"(click)="onsubmitProfile($event)">Save</button>
+                        </div>
+                        
+                    </form>
+                }
+                @if(orcService.openSuccessRegister()){
+                    <section id="registerSuccess" class="register_success">
+                        <p> {{msgAlert()}} </p>
+                    </section> 
+                } 
             }
             
         </div>  
         
-
-
+    
+     
 </section>
+
+

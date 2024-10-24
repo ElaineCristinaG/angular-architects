@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { ProfileService } from '../services/profile/profile.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StorageService } from '../services/storageData/storage.service';
-import { map, Observable } from 'rxjs';
+import { map, Observable, timeout } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -83,48 +83,51 @@ export class LoginComponent implements OnInit{
     
   }
 
-  public onsubmitProfile(event: Event){
-    const validPass = this.validatePass(
-      this.formProfile.controls['pass'].value, 
-      this.formProfile.controls['passRepit'].value);
-    const email = this.formProfile.controls['email'].value;
+  public onsubmitProfile(event: Event) {
+  const validPass = this.validatePass(
+    this.formProfile.controls['pass'].value, 
+    this.formProfile.controls['passRepit'].value
+  );
 
+  const email = this.formProfile.controls['email'].value;
+  console.log(email);
+
+  this.profileService.getByEmail(email).subscribe((profile) => {
+    
     let validEmail = false;
-    this.profileService.getByEmail(email).subscribe((profile => {
-      if(profile[0].email != email){
-        validEmail = true;
-      }else{
-        this.msgAlert.set('Email já cadastrado');
-      }
-    }))  
+    if (profile.length === 0) {  validEmail = true  } else {  this.msgAlert.set('Email já cadastrado') }
 
-    if(this.formProfile.valid && validPass && validEmail ){
+    if (this.formProfile.valid && validPass && validEmail) {
+      console.log(this.formProfile.valid, validPass, validEmail);
+      
       let profile: Profile = {
         name: this.formProfile.controls['name'].value,
         email: this.formProfile.controls['email'].value,
         password: this.formProfile.controls['pass'].value,
         admin: 0,
-      }
-
-    this.profileService.create(profile).subscribe(
-    (resp) => { 
-      console.log('User created sussess',resp) ;
-      this.closeRegister();
-    })
-    this.orcService.formRegister.set(true);
-    }else{
-      if(!validPass){
+      };
+           
+      this.profileService.create(profile).subscribe(
+        (resp) => {
+          this.orcService.openSuccessRegister.set(true)
+          this.msgAlert.set('Cadastrado com successo!');
+          setTimeout( () =>{
+            this.closeRegister();
+            this.orcService.openSuccessRegister.set(false);
+          },3000)
+          
+        }
+      );
+      this.orcService.formRegister.set(true);
+    } else {
+      if (!validPass) {
         this.passFailed = true;
-        this.msgAlert.set('As senhas não correspondem')
+        this.msgAlert.set('As senhas não correspondem');
       }
     }
-  }
+  });
+}
 
-  public passwordsMatchValidator() {
-  const password = this.formProfile.get('pass');
-  const confirmPassword = this.formProfile.get('passRepit');
-  return password && confirmPassword && password.value !== confirmPassword.value ? { passwordsMismatch: true } : null;
-  }
 
   private validatePass(pass1: string, pass2: string): boolean{
     return pass1 === pass2 ? true : false

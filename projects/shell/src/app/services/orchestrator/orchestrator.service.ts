@@ -10,6 +10,7 @@ export class OrchestratorService {
   public formRegister = signal(false);
   public openBooks = signal(false);
   public openModal = signal(false);
+  public openSuccessRegister = signal(false)
   public openfeedback = signal(false);
   public messageFeed = signal('');
   public user:WritableSignal<Profile> = signal({ email: '',name: '',password: '',admin: 0 });
